@@ -34,7 +34,6 @@ public class MEC_DEF_OBJ : MonoBehaviour {
         {
             receiveDMG = gameObject.AddComponent<RECEIVE_DMG>();
             receiveDMG.Inicializar(_hp,lifeImg);
-
         }
 
         if(_dmg > 0)
