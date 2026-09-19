@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 499b00e096089d14f9c181004ce6805c, type: 3}
+  m_Name: MecDef_Spike_SO
+  m_EditorClassIdentifier: Assembly-CSharp::MEC_DEF_SO
+  mecDefs:
+  - name: Spike Nv. 1
+    dmg: 0.3
+    dmgRate: 0.3
+    dmgRadius: 0.3
+    speedModifier: 0
+    hp: -1
+    placeRadius: 0.35
+    prefab: {fileID: 2088829801459532826, guid: c54b6ffd06165b5459e579659987c2d0, type: 3}
