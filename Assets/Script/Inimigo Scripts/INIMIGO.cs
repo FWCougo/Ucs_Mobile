@@ -20,7 +20,8 @@ public class INIMIGO : RECEIVE_DMG
     [Header("Colisao")]
     [SerializeField] bool showCollisionGizmos = false;
     [SerializeField] private float e_radius = 0.2f;
-    [SerializeField] private float e_radiusEnemy = 0.5f;
+    [SerializeField] private float e_radiusCauseDMG = 0.3f;
+    [SerializeField] private float e_radiusEnemy = 0.025f;
     [SerializeField] private Transform checkObstacle;
     [SerializeField] private Vector3 checkEnemy;
 
@@ -55,6 +56,10 @@ public class INIMIGO : RECEIVE_DMG
         {
             Gizmos.color = Color.green;
             Gizmos.DrawWireSphere(checkObstacle.position, e_radius);
+
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawWireSphere(checkObstacle.position, e_radiusCauseDMG);
+
             Gizmos.color = Color.darkRed;
             Gizmos.DrawWireSphere(checkEnemy, e_radiusEnemy);
         }
@@ -134,7 +139,7 @@ public class INIMIGO : RECEIVE_DMG
 
         print("Tentando causar dano");
 
-        Collider[] cols = Physics.OverlapSphere(checkObstacle.position, e_radiusEnemy, obstacleLayer);
+        Collider[] cols = Physics.OverlapSphere(checkObstacle.position, e_radiusCauseDMG, obstacleLayer);
 
         if (cols.Length > 0)
         {

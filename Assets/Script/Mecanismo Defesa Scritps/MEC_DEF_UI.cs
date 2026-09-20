@@ -15,22 +15,8 @@ public class MEC_DEF_UI : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
     [Header("Level")]
     [SerializeField] private int lv = 1;
 
-    [Header("Quantidade")]
-    [SerializeField] private int qtd = 1;
-    public int Qtd 
-    {
-        get { return qtd; }
-        private set 
-        {  
-            qtd = value; 
-            UpdateQtdUI();
-            if (qtd <= 0)
-            {
-                AlterarCG(0.3f);
-            }
-        } 
-    }
-    [SerializeField] private TMP_Text qtd_TXT;
+    [Header("Cost")]
+    [SerializeField] private TMP_Text cost_TXT;
 
     [Header("Other")]
     [SerializeField] private CanvasGroup canvasGroup;
@@ -45,7 +31,7 @@ public class MEC_DEF_UI : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
 
     void Start()
     {
-        UpdateQtdUI();
+        UpdateCostUI();
     }
 
     void AlterarCG(float _alpha)
@@ -53,10 +39,13 @@ public class MEC_DEF_UI : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
         canvasGroup.alpha = _alpha;
     }
 
-    void UpdateQtdUI()
+    void UpdateCostUI()
     {
-        qtd_TXT.text = Qtd.ToString();
+        int _cost = mecDef_SO.mecDefs[lv - 1].cost;
+
+        cost_TXT.text = _cost.ToString();
     }
+
 
     MEC_DEF_OBJ InstanciarPrefab(Vector3 _posiiton)
     {
@@ -97,10 +86,40 @@ public class MEC_DEF_UI : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
         return true;
     }
 
+    void ChecaDisponibilidade()
+    {
+        if (!ChecarSeTemDinheiro())
+        {
+            AlterarCG(0.5f);
+        }
+    }
+
+    bool ChecarSeTemDinheiro()
+    {
+        int _cost = mecDef_SO.mecDefs[lv - 1].cost;
+        int _caixinha = GAME_MANAGER.Instance.Coins;
+
+        if (_cost > _caixinha) 
+        { 
+            return false; 
+        }
+        else 
+        {             
+            return true;
+        }
+    }
+
+    void Comprar()
+    {
+        int _cost = mecDef_SO.mecDefs[lv - 1].cost;
+
+        GAME_MANAGER.Instance.RemoveCoins(_cost);
+    }
+
     #region Drag Methods
     public void OnBeginDrag(PointerEventData eventData)
     {
-        if (qtd <= 0) return;
+        if (!ChecarSeTemDinheiro()) return;
 
         worldPos = GetWorldPoint(eventData.position);
         worldPos.y = 0;
@@ -112,7 +131,7 @@ public class MEC_DEF_UI : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
 
     public void OnDrag(PointerEventData eventData)
     {
-        if (qtd <= 0) return;
+        if (!ChecarSeTemDinheiro()) return;
 
         worldPos = GetWorldPoint(eventData.position);
         worldPos.y = 0;
@@ -132,14 +151,16 @@ public class MEC_DEF_UI : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        if (qtd <= 0) return;
+        if(!ChecarSeTemDinheiro()) return; 
 
         MEC_DEF_MANAGER.Instance.FadeMecDef_CG(1);
 
         if (PodePosicionar())
         {
             mecDef_OBJ.Inicializar(mecDef_SO, lv-1);
-            Qtd--;
+            Comprar();
+
+            ChecaDisponibilidade();
         }
         else
         {

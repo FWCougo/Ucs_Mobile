@@ -11,6 +11,7 @@ public class MEC_DEF_SO : ScriptableObject
 public class MEC_DEF_SERIALIZED
 {
     public string name;
+    public int cost;
     public float dmg;
     public float dmgRate;
     public float dmgRadius;

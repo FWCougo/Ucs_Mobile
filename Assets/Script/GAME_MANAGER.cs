@@ -7,10 +7,10 @@ public class GAME_MANAGER : MonoBehaviour
 
     [Header("Moedas")]
     [SerializeField] private int coins = 0;
-    private int Coins
+    public int Coins
     {
         get { return coins; }
-        set 
+        private set 
         {
             coins = value;
             UpdateCoinTXT();

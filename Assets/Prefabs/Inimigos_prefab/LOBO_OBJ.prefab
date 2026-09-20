@@ -554,13 +554,14 @@ MonoBehaviour:
   e_agent: {fileID: 5871389620689716130}
   e_destino: {x: 0, y: 0, z: 0}
   e_velocidadeAtual: 0
-  e_velocidadeNormal: 2
+  e_velocidadeNormal: 1
   e_velocidadeDevagar: 0.5
   viuObstaculo: 0
   inimigoViuObstaculo: 0
   showCollisionGizmos: 1
   e_radius: 0.2
-  e_radiusEnemy: 0.2
+  e_radiusCauseDMG: 0.3
+  e_radiusEnemy: 0.05
   checkObstacle: {fileID: 9072854136198839137}
   checkEnemy: {x: 0, y: 0, z: 0}
   obstacleLayer:
@@ -571,10 +572,11 @@ MonoBehaviour:
     m_Bits: 64
   enemyLayer:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 0
   dmgRate: 0.25
   causandoDano: 0
   dano: 0.5
+  coins: 10
 --- !u!195 &5871389620689716130
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -584,7 +586,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 8958202715527651650}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.3
+  m_Radius: 0.2
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -596,7 +598,7 @@ NavMeshAgent:
   m_Height: 1
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  m_ObstacleAvoidanceType: 2
 --- !u!65 &548682122747461699
 BoxCollider:
   m_ObjectHideFlags: 0

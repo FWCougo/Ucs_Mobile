@@ -1932,7 +1932,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   inimigoPool:
   - inimigo: {fileID: 4363622424360941723, guid: b3d664f2d3f985f4fb8d254be2287ff1, type: 3}
-    qtdParaSpawnar: 20
+    qtdParaSpawnar: 5
   inimigoAtualPool: 0
   spawnRate: 1
   waitToStart: 3
@@ -9464,13 +9464,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6009944978231499508}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.6427876, y: -0, z: -0, w: 0.7660445}
+  m_LocalRotation: {x: 0.6393784, y: -0.078801244, z: 0.06612194, w: 0.76198006}
   m_LocalPosition: {x: 0, y: 0.133, z: 0.173}
   m_LocalScale: {x: 1, y: 0.2091, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5436596176484640279}
-  m_LocalEulerAnglesHint: {x: 80, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 80, y: -11.809, z: 0}
 --- !u!114 &1361599384357977637
 MonoBehaviour:
   m_ObjectHideFlags: 0

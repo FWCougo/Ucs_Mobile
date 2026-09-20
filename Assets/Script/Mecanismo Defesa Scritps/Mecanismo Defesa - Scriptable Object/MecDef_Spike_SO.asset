@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MEC_DEF_SO
   mecDefs:
   - name: Spike Nv. 1
+    cost: 80
     dmg: 0.3
     dmgRate: 0.3
     dmgRadius: 0.3

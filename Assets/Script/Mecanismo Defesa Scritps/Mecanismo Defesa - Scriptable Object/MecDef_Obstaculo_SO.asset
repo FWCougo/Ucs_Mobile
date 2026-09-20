@@ -14,8 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MEC_DEF_SO
   mecDefs:
   - name: Obstaculo Nv. 1
+    cost: 45
     dmg: 0
     dmgRate: 0
+    dmgRadius: 0
     speedModifier: 0
     hp: 10
     placeRadius: 0.35

@@ -280,6 +280,7 @@ GameObject:
   - component: {fileID: 7849088629636429126}
   - component: {fileID: 4687444033829132793}
   - component: {fileID: 5590051779477642610}
+  - component: {fileID: 2589253025254247625}
   m_Layer: 7
   m_Name: OBSTACLE_prefab
   m_TagString: obstacle_defense
@@ -342,10 +343,23 @@ MonoBehaviour:
   lv: 0
   receiveDMG: {fileID: 0}
   dmgContinuo: {fileID: 0}
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 192
   lifeImg: {fileID: 4731334003377366984}
+--- !u!208 &2589253025254247625
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3029495908212376807}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &3177569306247275860
 GameObject:
   m_ObjectHideFlags: 0
