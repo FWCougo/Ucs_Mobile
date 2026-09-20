@@ -30,7 +30,7 @@ public class GAME_MANAGER : MonoBehaviour
 
     void UpdateCoinTXT()
     {
-        coins_TXT.text = Coins.ToString() + " $";
+        coins_TXT.text = Coins.ToString() + " P$";
     }
 
     public void AddCoins(int _coins) 
