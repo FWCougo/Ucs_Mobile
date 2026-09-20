@@ -32,8 +32,6 @@ public class DMG_CONTINUO : MonoBehaviour
 
     private void FixedUpdate()
     {
-        print("feito");
-
         Collider[] cols = Physics.OverlapSphere(transform.position, dmgRadius, enemyLayer);
 
         _inimigosNoRaioAgora.Clear();
