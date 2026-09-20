@@ -18,7 +18,16 @@ MonoBehaviour:
     dmg: 0
     dmgRate: 0
     dmgRadius: 0
-    speedModifier: 0
+    speedModifier: 0.25
+    hp: -1
+    placeRadius: 0.35
+    prefab: {fileID: 5327859114143437811, guid: f369d77943a8a5f4b8b938cfb6d878b2, type: 3}
+  - name: Mud Nv.2
+    cost: 50
+    dmg: 0
+    dmgRate: 0
+    dmgRadius: 0
+    speedModifier: 0.35
     hp: -1
     placeRadius: 0.35
     prefab: {fileID: 5327859114143437811, guid: f369d77943a8a5f4b8b938cfb6d878b2, type: 3}
