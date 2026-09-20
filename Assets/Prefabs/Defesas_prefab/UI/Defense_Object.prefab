@@ -1375,8 +1375,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 192
   lv: 1
-  qtd: 5
-  qtd_TXT: {fileID: 2494944368046938724}
+  cost_TXT: {fileID: 4125041539389373085}
   canvasGroup: {fileID: 8283779134217049151}
 --- !u!225 &8283779134217049151
 CanvasGroup:

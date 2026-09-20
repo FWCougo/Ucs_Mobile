@@ -2420,6 +2420,10 @@ PrefabInstance:
       propertyPath: mecDef_SO
       value: 
       objectReference: {fileID: 11400000, guid: 99812684d839d1c47987d30932b5e975, type: 2}
+    - target: {fileID: 7005366598616795361, guid: 10969684372089449b83bad909f4daa3, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 6723963429988506304, guid: 813f7c86a3132eb46a736c49e014ac18, type: 3}
     - target: {fileID: 7919756399958867304, guid: 10969684372089449b83bad909f4daa3, type: 3}
       propertyPath: m_Name
       value: Defense_Object (1)
