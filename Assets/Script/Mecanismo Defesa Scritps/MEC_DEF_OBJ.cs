@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 public class MEC_DEF_OBJ : MonoBehaviour { 
@@ -10,18 +11,22 @@ public class MEC_DEF_OBJ : MonoBehaviour {
     [SerializeField] private DMG_CONTINUO dmgContinuo;
     [SerializeField] private Image lifeImg;
 
+    [SerializeField] private float placeRadius;
+
 #if UNITY_EDITOR
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellowGreen;
-        if(mecDef_SO != null ) Gizmos.DrawWireSphere(transform.position, mecDef_SO.mecDefs[lv].placeRadius);
+        if(mecDef_SO != null ) Gizmos.DrawWireSphere(transform.position, placeRadius);
     }
 
-    #endif
+#endif
 
     public void Inicializar(MEC_DEF_SO _mecDefSO, int _lv)
     {
+        placeRadius = _mecDefSO.mecDefs[_lv].placeRadius;
+
         mecDef_SO = _mecDefSO;
         lv = _lv;
 
