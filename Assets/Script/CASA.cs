@@ -9,4 +9,12 @@ public class CASA : RECEIVE_DMG
         casaPosition = transform.position;
     }
 
+
+    protected override void Morrer()
+    {
+        MENU_MANAGER.Instance.OpenMenu("GAMEOVER_MENU");
+        base.Morrer();
+    }
+
+
 }

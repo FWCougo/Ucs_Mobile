@@ -259,7 +259,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: 7316229441688303391, guid: e61d7270afd278440a1e6cebf1bb5cf2, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 0.25882354}
   m_FlipX: 0
   m_FlipY: 0
@@ -324,8 +324,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.9, y: 1, z: -0.3}
+  m_Center: {x: 0, y: 0, z: -0.3}
 --- !u!114 &5590051779477642610
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -344,6 +344,7 @@ MonoBehaviour:
   receiveDMG: {fileID: 0}
   dmgContinuo: {fileID: 0}
   lifeImg: {fileID: 4731334003377366984}
+  placeRadius: 0
 --- !u!208 &2589253025254247625
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -354,11 +355,11 @@ NavMeshObstacle:
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 1
-  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_Extents: {x: 0.5, y: 0.5, z: 0.15}
   m_MoveThreshold: 0.1
   m_Carve: 0
   m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0, z: -0.3}
   m_TimeToStationary: 0.5
 --- !u!1 &3177569306247275860
 GameObject:
@@ -441,7 +442,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: 7316229441688303391, guid: e61d7270afd278440a1e6cebf1bb5cf2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

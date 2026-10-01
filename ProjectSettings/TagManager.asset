@@ -6,6 +6,7 @@ TagManager:
   tags:
   - walkable_defense
   - obstacle_defense
+  - menu
   layers:
   - Default
   - TransparentFX

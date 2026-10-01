@@ -1,7 +1,8 @@
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 using UnityEngine.EventSystems;
-using Unity.VisualScripting;
+using UnityEngine.Rendering;
 
 public class MEC_DEF_UI : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
@@ -9,14 +10,21 @@ public class MEC_DEF_UI : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
     [SerializeField] private MEC_DEF_SO mecDef_SO;
     [SerializeField] private MEC_DEF_OBJ mecDef_OBJ;
 
+    [Header("Imagem")]
+    [SerializeField] private Image img;
+
     [Header("Layer")]
-    [SerializeField] LayerMask obstacleLayer;
+    //[SerializeField] LayerMask obstacleLayer;
 
     [Header("Level")]
     [SerializeField] private int lv = 1;
 
     [Header("Cost")]
     [SerializeField] private TMP_Text cost_TXT;
+
+    [Header("Offset")]
+    [SerializeField] private float offsetX = -0.1f;
+    [SerializeField] private float offsetZ = 0.1f;
 
     [Header("Other")]
     [SerializeField] private CanvasGroup canvasGroup;
@@ -32,6 +40,12 @@ public class MEC_DEF_UI : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
     void Start()
     {
         UpdateCostUI();
+        SetarImagem();
+    }
+
+    void SetarImagem()
+    {
+        img.sprite = mecDef_SO.mecDefs[lv - 1].sprite;
     }
 
     void AlterarCG(float _alpha)
@@ -67,12 +81,12 @@ public class MEC_DEF_UI : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
 
         Debug.DrawLine(cam.transform.position, P);
 
-        return P;
+        return P + new Vector3(offsetX,0,offsetZ);
     }
 
     bool PodePosicionar()
     {
-        Collider[] cols = Physics.OverlapSphere(worldPos, mecDef_SO.mecDefs[lv-1].placeRadius, obstacleLayer);
+        Collider[] cols = Physics.OverlapSphere(worldPos, mecDef_SO.mecDefs[lv-1].placeRadius, mecDef_SO.mecDefs[lv - 1].obstacleLayer);
 
         for (int i = 0; i < cols.Length; i++)
         {
@@ -145,12 +159,14 @@ public class MEC_DEF_UI : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
             {
                 mecDef_OBJ.PodePosicionar(false);
             }
+
+            mecDef_OBJ.TrocarTransparencia(0.5f);
         }
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        if(!ChecarSeTemDinheiro()) return; 
+        if (!ChecarSeTemDinheiro()) return;
 
         MEC_DEF_MANAGER.Instance.FadeMecDef_CG(1);
 
@@ -166,6 +182,7 @@ public class MEC_DEF_UI : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
             Destroy(mecDef_OBJ.gameObject);
         }
 
+        mecDef_OBJ.TrocarTransparencia(1);
     }
     #endregion
 

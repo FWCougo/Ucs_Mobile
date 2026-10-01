@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class GAME_MANAGER : MonoBehaviour
@@ -41,5 +42,10 @@ public class GAME_MANAGER : MonoBehaviour
     public void RemoveCoins(int _coins)
     {
         Coins -= _coins;
+    }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(0);
     }
 }

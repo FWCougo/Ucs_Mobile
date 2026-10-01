@@ -49,6 +49,15 @@ public class MEC_DEF_OBJ : MonoBehaviour {
         
     }
 
+    public void TrocarTransparencia(float _alpha)
+    {
+        Color _col;
+
+        _col = mainSprite.color;
+        _col.a = _alpha;
+        mainSprite.color = _col;
+    }
+
     /// <summary>
     /// Altera a cor do Mecanismo se não pode posicionar. Passar 'true' se pode posicionar, 'false' se não pode.
     /// </summary>

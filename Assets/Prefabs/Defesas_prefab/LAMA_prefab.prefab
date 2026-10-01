@@ -79,7 +79,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_MaskInteraction: 0
   m_Sprite: {fileID: -5959864368448071320, guid: da86f20e7544a23408125d4e64ac16cb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -165,6 +165,7 @@ MonoBehaviour:
   receiveDMG: {fileID: 0}
   dmgContinuo: {fileID: 0}
   lifeImg: {fileID: 0}
+  placeRadius: 0
 --- !u!1 &7996556724079649229
 GameObject:
   m_ObjectHideFlags: 0
@@ -244,7 +245,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_MaskInteraction: 0
   m_Sprite: {fileID: -5959864368448071320, guid: da86f20e7544a23408125d4e64ac16cb, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 0.25882354}

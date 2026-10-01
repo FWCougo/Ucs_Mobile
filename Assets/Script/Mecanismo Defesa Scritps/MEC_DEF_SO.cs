@@ -18,5 +18,7 @@ public class MEC_DEF_SERIALIZED
     public float speedModifier;
     public float hp;
     public float placeRadius = 0.5f;
+    public Sprite sprite;
     public GameObject prefab;
+    public LayerMask obstacleLayer;
 }

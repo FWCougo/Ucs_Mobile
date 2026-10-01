@@ -21,4 +21,8 @@ MonoBehaviour:
     speedModifier: 0.25
     hp: -1
     placeRadius: 0.35
+    sprite: {fileID: -5959864368448071320, guid: da86f20e7544a23408125d4e64ac16cb, type: 3}
     prefab: {fileID: 5327859114143437811, guid: f369d77943a8a5f4b8b938cfb6d878b2, type: 3}
+    obstacleLayer:
+      serializedVersion: 2
+      m_Bits: 0
