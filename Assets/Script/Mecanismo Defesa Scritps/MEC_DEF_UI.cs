@@ -23,8 +23,7 @@ public class MEC_DEF_UI : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
     [SerializeField] private TMP_Text cost_TXT;
 
     [Header("Offset")]
-    [SerializeField] private float offsetX = -0.1f;
-    [SerializeField] private float offsetZ = 0.1f;
+    [SerializeField] private float offsetZ = 0.5f;
 
     [Header("Other")]
     [SerializeField] private CanvasGroup canvasGroup;
@@ -81,7 +80,7 @@ public class MEC_DEF_UI : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
 
         Debug.DrawLine(cam.transform.position, P);
 
-        return P + new Vector3(offsetX,0,offsetZ);
+        return P + new Vector3(0,0,offsetZ);
     }
 
     bool PodePosicionar()
