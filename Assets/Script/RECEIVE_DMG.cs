@@ -23,7 +23,10 @@ public class RECEIVE_DMG : MonoBehaviour, IDamageable
     {
         maxHP = _maxHP;
         hp = maxHP;
-        lifeImg = _lifeImg;
+        if (lifeImg != null)
+        {
+            lifeImg = _lifeImg;
+        }
         AtualizarHp();
     }
 
@@ -41,7 +44,10 @@ public class RECEIVE_DMG : MonoBehaviour, IDamageable
 
     private void AtualizarHp()
     {
-        lifeImg.fillAmount = hp/maxHP;
+        if(lifeImg!=null)
+        {
+            lifeImg.fillAmount = hp/maxHP;
+        }
     }
 
     public void ReceberDano(float _dano)

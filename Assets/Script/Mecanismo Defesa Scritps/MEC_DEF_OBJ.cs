@@ -9,6 +9,12 @@ public class MEC_DEF_OBJ : MonoBehaviour, IPointerClickHandler
     [SerializeField] private SpriteRenderer mainSprite;
     [SerializeField] private int lv;
 
+    [Header("Canvas Local")]
+    [SerializeField] private bool canvaLigado;
+    [SerializeField] private Canvas canva;
+    [SerializeField] private GameObject painelCtz;
+    [SerializeField] private GameObject botaoVenda;
+
     private RECEIVE_DMG receiveDMG;
     private DMG_CONTINUO dmgContinuo;
     private MEC_DEF_TORRETA torreta;
@@ -17,6 +23,12 @@ public class MEC_DEF_OBJ : MonoBehaviour, IPointerClickHandler
 
     [Header("COLISAO")]
     [SerializeField] private Collider col;
+
+    private void Awake()
+    {
+        canva = GetComponentInChildren<Canvas>();
+        canva.gameObject.SetActive(false);
+    }
 
     private void Start(){
         col.enabled = false;
@@ -79,8 +91,43 @@ public class MEC_DEF_OBJ : MonoBehaviour, IPointerClickHandler
         
     }
 
+
+    public void PainelDeVenda(bool _value){
+        if(_value)
+        {
+            painelCtz.SetActive(true);
+            botaoVenda.SetActive(false);
+        }
+        else
+        {
+            botaoVenda.SetActive(true);
+            painelCtz.SetActive(false);
+        }        
+    }
+
+    public void Vender()
+    {
+        int _preco = (int)(mecDef_SO.mecDefs[lv].cost*0.5f);
+        GAME_MANAGER.Instance.AddCoins(_preco);
+        Destroy(gameObject);
+    }
+
+    public void AtivaCanva()
+    {
+        canvaLigado = !canvaLigado;
+
+        if (canvaLigado)
+        {
+            canva.gameObject.SetActive(true);
+        }
+        else
+        {
+            canva.gameObject.SetActive(false);
+        }
+    }
+
     public void OnPointerClick(PointerEventData eventData)
     {
-        print("CLICOU NO MECANISMO DE DEFESA");
+        AtivaCanva();
     }
 }
