@@ -1,30 +1,37 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
 
-public class MEC_DEF_OBJ : MonoBehaviour { 
+public class MEC_DEF_OBJ : MonoBehaviour, IPointerClickHandler
+{
     [SerializeField] private MEC_DEF_SO mecDef_SO;
     [SerializeField] private SpriteRenderer mainSprite;
     [SerializeField] private int lv;
 
-    [SerializeField] private RECEIVE_DMG receiveDMG;
-    [SerializeField] private DMG_CONTINUO dmgContinuo;
-    [SerializeField] private Image lifeImg;
+    private RECEIVE_DMG receiveDMG;
+    private DMG_CONTINUO dmgContinuo;
+    private MEC_DEF_TORRETA torreta;
 
     [SerializeField] private float placeRadius;
 
-#if UNITY_EDITOR
+    [Header("COLISAO")]
+    [SerializeField] private Collider col;
 
-    private void OnDrawGizmos()
-    {
+    private void Start(){
+        col.enabled = false;
+    }
+
+#if UNITY_EDITOR
+    private void OnDrawGizmos(){
         Gizmos.color = Color.yellowGreen;
         if(mecDef_SO != null ) Gizmos.DrawWireSphere(transform.position, placeRadius);
     }
-
 #endif
 
-    public void Inicializar(MEC_DEF_SO _mecDefSO, int _lv)
-    {
+    public void Inicializar(MEC_DEF_SO _mecDefSO, int _lv){
+        col.enabled = true;
+
         placeRadius = _mecDefSO.mecDefs[_lv].placeRadius;
 
         mecDef_SO = _mecDefSO;
@@ -35,18 +42,15 @@ public class MEC_DEF_OBJ : MonoBehaviour {
         float _dmgRadius = _mecDefSO.mecDefs[_lv].dmgRadius;
         float _dmgRate = _mecDefSO.mecDefs[_lv].dmgRate;
 
-        if (_hp != -1)
-        {
+        if (_hp != -1){
             receiveDMG = gameObject.AddComponent<RECEIVE_DMG>();
-            receiveDMG.Inicializar(_hp,lifeImg);
+            receiveDMG.Inicializar(_hp, receiveDMG.lifeImg);
         }
 
-        if(_dmg > 0)
-        {
+        if(_dmg > 0){
             dmgContinuo = gameObject.AddComponent<DMG_CONTINUO>();
             dmgContinuo.Inicializar(_dmgRadius,_dmg,_dmgRate);
         }
-        
     }
 
     public void TrocarTransparencia(float _alpha)
@@ -75,4 +79,8 @@ public class MEC_DEF_OBJ : MonoBehaviour {
         
     }
 
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        print("CLICOU NO MECANISMO DE DEFESA");
+    }
 }

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: ea54e4236c43a254badb9c0cdd121cbf
+guid: d4885243b842e8f4da1e78ce1d6f59f9
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5908327983602914153
-    second: Path_0
+      213: 8590902768981357359
+    second: torreta_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 640
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -139,23 +139,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Path_0
+      name: torreta_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 640
-        height: 640
+        x: 63
+        y: 47
+        width: 626
+        height: 634
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 79c29d8a007610ea0800000000000000
-      internalID: -5908327983602914153
+      spriteID: f23bd054d84093770800000000000000
+      internalID: 8590902768981357359
       vertices: []
       indices: 
       edges: []
@@ -164,7 +164,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 7949c4cc6b3c567478a3ce674a3132f0
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -174,7 +174,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Path_0: -5908327983602914153
+      torreta_0: 8590902768981357359
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

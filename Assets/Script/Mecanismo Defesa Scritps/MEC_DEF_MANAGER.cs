@@ -6,6 +6,8 @@ public class MEC_DEF_MANAGER : MonoBehaviour
     [SerializeField] private Transform MecDef_Conteiner;
     [SerializeField] private CanvasGroup mecDefs_canvasGroup;
 
+
+
     private void Awake()
     {
         Instance = this;

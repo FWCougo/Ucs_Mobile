@@ -6,6 +6,8 @@ public class GAME_MANAGER : MonoBehaviour
 {
     public static GAME_MANAGER Instance;
 
+    [SerializeField] private bool pause;
+
     [Header("Moedas")]
     [SerializeField] private int coins = 0;
     public int Coins
@@ -29,6 +31,23 @@ public class GAME_MANAGER : MonoBehaviour
         UpdateCoinTXT();
     }
 
+
+
+    public void Pause()
+    {
+        pause = !pause;
+
+        if(pause){
+            Time.timeScale = 0;
+            MENU_MANAGER.Instance.OpenMenu("PAUSE_MENU");
+        }
+        else{
+            Time.timeScale = 1;
+            MENU_MANAGER.Instance.OpenMenu("GAME_MENU");
+        }
+    } 
+
+    #region Coins
     void UpdateCoinTXT()
     {
         coins_TXT.text = Coins.ToString() + " P$";
@@ -43,6 +62,7 @@ public class GAME_MANAGER : MonoBehaviour
     {
         Coins -= _coins;
     }
+    #endregion
 
     public void RestartGame()
     {

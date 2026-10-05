@@ -10,21 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 499b00e096089d14f9c181004ce6805c, type: 3}
-  m_Name: MecDef_Lama_SO
+  m_Name: MecDef_Torreta_SO
   m_EditorClassIdentifier: Assembly-CSharp::MEC_DEF_SO
   mecDefs:
-  - name: Mud Nv.1
-    cost: 50
+  - name: Torreta Lv.1
+    cost: 100
     hp: -1
     placeRadius: 0.35
-    sprite: {fileID: -5959864368448071320, guid: da86f20e7544a23408125d4e64ac16cb, type: 3}
+    sprite: {fileID: 8590902768981357359, guid: d4885243b842e8f4da1e78ce1d6f59f9, type: 3}
     prefab: {fileID: 5327859114143437811, guid: f369d77943a8a5f4b8b938cfb6d878b2, type: 3}
     obstacleLayer:
       serializedVersion: 2
       m_Bits: 192
-    tpDefesa: 4
-    dmg: 0
-    dmgRate: 0
+    tpDefesa: 2
+    dmg: 0.3
+    dmgRate: 0.5
     dmgRadius: 0
     shootRate: 0
     shootRadius: 0

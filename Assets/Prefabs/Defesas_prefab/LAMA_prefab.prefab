@@ -162,10 +162,8 @@ MonoBehaviour:
   mecDef_SO: {fileID: 0}
   mainSprite: {fileID: 2031113600601977017}
   lv: 0
-  receiveDMG: {fileID: 0}
-  dmgContinuo: {fileID: 0}
-  lifeImg: {fileID: 0}
   placeRadius: 0
+  col: {fileID: 4916407741136536309}
 --- !u!1 &7996556724079649229
 GameObject:
   m_ObjectHideFlags: 0

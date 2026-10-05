@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class RECEIVE_DMG : MonoBehaviour, IDamageable
 {
-    [SerializeField] private Image lifeImg;
+    [HideInInspector] public Image lifeImg;
     [SerializeField] protected float maxHP=10;
     [SerializeField] private float hp;
     public float HP {  

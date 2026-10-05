@@ -164,8 +164,10 @@ MonoBehaviour:
   lv: 0
   receiveDMG: {fileID: 0}
   dmgContinuo: {fileID: 0}
+  torreta: {fileID: 0}
   lifeImg: {fileID: 0}
   placeRadius: 0.25
+  col: {fileID: 5443299383595133068}
 --- !u!1 &7640158154414062163
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,6 +7,8 @@ public class SPAWN_INIMIGO : MonoBehaviour
     [SerializeField] ENEMYPOOL[] inimigoPool;
     [SerializeField] private int inimigoAtualPool;
 
+
+    [SerializeField] private float roundRate;
     [SerializeField] private float spawnRate;
 
     [SerializeField] private float waitToStart=3;
@@ -41,25 +43,32 @@ public class SPAWN_INIMIGO : MonoBehaviour
 
     IEnumerator SpawnarInimigos()
     {
-        WaitForSeconds _wait = new WaitForSeconds(waitToStart);
-        yield return _wait;
+        yield return new WaitForSeconds(roundRate);
 
-        _wait = new WaitForSeconds(spawnRate);
-
-        int _nInimigos = inimigoPool[inimigoAtualPool].qtdParaSpawnar;
-
-        for (int i = 0; i < _nInimigos; i++)
+        while (true)
         {
-            INIMIGO _inimigo = inimigoPool[inimigoAtualPool].inimigo;
-            _inimigo = Instantiate(_inimigo, transform.position, Quaternion.identity, inimigosConteiner);
-            _inimigo.ReceberDestino();
-
+            WaitForSeconds _wait = new WaitForSeconds(waitToStart);
             yield return _wait;
+
+            _wait = new WaitForSeconds(spawnRate);
+
+            int _nInimigos = inimigoPool[inimigoAtualPool].qtdParaSpawnar;
+
+            for (int i = 0; i < _nInimigos; i++)
+            {
+                INIMIGO _inimigo = inimigoPool[inimigoAtualPool].inimigo;
+                _inimigo = Instantiate(_inimigo, transform.position, Quaternion.identity, inimigosConteiner);
+                _inimigo.ReceberDestino();
+
+                yield return _wait;
+            }
+
+            //inimigoAtualPool++;
+
+            yield return null;
         }
 
-        inimigoAtualPool++;
-
-        yield return null;   
+            
     }
 }
 

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class TORRETA : MonoBehaviour
+public class MEC_DEF_TORRETA : MonoBehaviour
 {
     [Header("Referencias")]
     [SerializeField] private Transform canoTorreta;
@@ -54,14 +54,7 @@ public class TORRETA : MonoBehaviour
     }
 
     private void Start()
-    {
-        if (canoTorreta == null)
-        {
-            Debug.LogError($"[{nameof(TORRETA)}] canoTorreta nao foi atribuido em {name}.", this);
-            enabled = false;
-            return;
-        }
-
+    { 
         rotInicial = canoTorreta.rotation;
     }
 

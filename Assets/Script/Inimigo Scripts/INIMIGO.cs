@@ -64,18 +64,15 @@ public class INIMIGO : RECEIVE_DMG
             Gizmos.DrawWireSphere(checkEnemy, e_radiusEnemy);
         }
     }
-
     public void AlterarVelocidade(float _speed)
     {
         e_velocidadeAtual = _speed;
         e_agent.speed = e_velocidadeAtual;
     }
-
     public void ReceberDestino()
     {
         e_destino = CASA.casaPosition;
     }
-
     void ChecarObstaculos()
     {
         bool obstacleFound = Physics.CheckSphere(checkObstacle.position, e_radius, obstacleLayer);
@@ -132,7 +129,6 @@ public class INIMIGO : RECEIVE_DMG
 
         inimigoViuObstaculo = false;
     }
-
     void TentarCausarDano()
     {
         if (causandoDano) return;
@@ -153,7 +149,6 @@ public class INIMIGO : RECEIVE_DMG
             return;
         }
     }
-
     IEnumerator CausarDano(IDamageable _damageable)
     {
         print("Causando dano");

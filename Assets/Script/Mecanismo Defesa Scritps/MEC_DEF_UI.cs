@@ -23,7 +23,7 @@ public class MEC_DEF_UI : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
     [SerializeField] private TMP_Text cost_TXT;
 
     [Header("Offset")]
-    [SerializeField] private float offsetZ = 0.5f;
+    private float offsetZ = 1f;
 
     [Header("Other")]
     [SerializeField] private CanvasGroup canvasGroup;
@@ -34,6 +34,7 @@ public class MEC_DEF_UI : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
     void Awake()
     {
         cam = Camera.main;
+        offsetZ = 1;
     }
 
     void Start()

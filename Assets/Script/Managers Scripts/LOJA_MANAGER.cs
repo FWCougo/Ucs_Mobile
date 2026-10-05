@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class MENU_MANAGER : MonoBehaviour
+public class LOJA_MANAGER : MonoBehaviour
 {
     public static MENU_MANAGER Instance;
 
@@ -8,28 +8,10 @@ public class MENU_MANAGER : MonoBehaviour
     [SerializeField] private int currentMenuID = -1;
     [SerializeField] private int previousMenuID = -1;
 
-    private void Awake()
-    {
-        if(Instance == null)
-            Instance = this;
-        else
-            Destroy(this.gameObject);
-    }
-
-    private void Start()
+    public void OpenMenu(string menuName)
     {
         CloseMenus();
-        OpenMenu("MENU_MENU");
-    }
 
-    [ContextMenu("GET MENUS")]
-    public void GetMenus()
-    {
-        menuList = GameObject.FindGameObjectsWithTag("menu");
-    }
-
-    public void OpenMenu(string menuName)
-    { 
         for (int i = 0; i < menuList.Length; i++)
         {
             if (menuList[i].name == menuName)
@@ -37,15 +19,15 @@ public class MENU_MANAGER : MonoBehaviour
                 menuList[i].SetActive(true);
                 currentMenuID = i;
                 break;
-            }             
+            }
         }
 
         if (previousMenuID != -1 && previousMenuID != currentMenuID)
         {
             menuList[previousMenuID].SetActive(false);
         }
-        
-        previousMenuID = currentMenuID;        
+
+        previousMenuID = currentMenuID;
     }
 
     public void CloseMenus()

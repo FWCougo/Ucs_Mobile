@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 52a066b9bb9b9954ea2448005e741e37
+guid: d45b5ecd6b09bf64f9434257de1bc670
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3208213247304168876
-    second: Path1_0
+      213: 8375903878611967276
+    second: TowerFixMaybe_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 640
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -139,13 +139,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Path1_0
+      name: TowerFixMaybe_0
       rect:
         serializedVersion: 2
-        x: 24
-        y: 50
-        width: 616
-        height: 590
+        x: 95
+        y: 0
+        width: 330
+        height: 512
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -154,8 +154,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 45a8bb6ac032a73d0800000000000000
-      internalID: -3208213247304168876
+      spriteID: c2d9b7d33303d3470800000000000000
+      internalID: 8375903878611967276
       vertices: []
       indices: 
       edges: []
@@ -174,7 +174,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Path1_0: -3208213247304168876
+      TowerFixMaybe_0: 8375903878611967276
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
