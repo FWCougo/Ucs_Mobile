@@ -22,10 +22,14 @@ MonoBehaviour:
     obstacleLayer:
       serializedVersion: 2
       m_Bits: 192
+    enemyLayer:
+      serializedVersion: 2
+      m_Bits: 8
     tpDefesa: 4
     dmg: 0.3
     dmgRate: 0.3
     dmgRadius: 0.2
     shootRate: 0
     shootRadius: 0
+    rotationSpeed: 0
     speedModifier: 0

@@ -1,10 +1,11 @@
 using UnityEngine;
+using DG.Tweening;
 
 public class MEC_DEF_TORRETA : MonoBehaviour
 {
     [Header("Referencias")]
     [SerializeField] private Transform canoTorreta;
-    [SerializeField] private Transform pontoDisparo;
+    [SerializeField] private SpriteRenderer canoSprite;
 
     [Header("Deteccao")]
     [SerializeField] private LayerMask enemyLayer;
@@ -34,13 +35,13 @@ public class MEC_DEF_TORRETA : MonoBehaviour
     /// Configura a torreta com os valores vindos do MEC_DEF_SO.
     /// Deve ser chamado logo apos o AddComponent.
     /// </summary>
-    public void Configurar(float _dano, float _alcance, float _fireRate, float _velRotacao, LayerMask _enemyLayer)
+    public void Inicializar(float _dano, float _alcance, float _fireRate, float _velRotacao, LayerMask _enemyLayer)
     {
         dano = _dano;
         alcance = _alcance;
         fireRate = _fireRate;
         velRotacao = _velRotacao;
-        enemyLayer = _enemyLayer;
+        enemyLayer = _enemyLayer;        
     }
 
     /// <summary>
@@ -49,7 +50,6 @@ public class MEC_DEF_TORRETA : MonoBehaviour
     public void DefinirReferencias(Transform _cano, Transform _pontoDisparo)
     {
         canoTorreta = _cano;
-        pontoDisparo = _pontoDisparo;
         rotInicial = canoTorreta.rotation;
     }
 
@@ -141,8 +141,19 @@ public class MEC_DEF_TORRETA : MonoBehaviour
         miraAlinhada = Quaternion.Angle(canoTorreta.rotation, _rotAlvo) <= anguloTolerancia;
     }
 
+    private void AnimacaoDeTiro()
+    {
+        canoSprite.transform.DOScale(transform.localScale*1.01f,0.25f).SetEase(Ease.Flash).OnComplete(()=>
+        {
+            canoSprite.transform.DOScale(Vector3.one, 0.1f);
+        }     
+        );
+    }
+
     private void Atirar()
     {
+        AnimacaoDeTiro();
+
         if (inimigoAtual.TryGetComponent(out IDamageable _damageable))
         {
             _damageable.ReceberDano(dano);

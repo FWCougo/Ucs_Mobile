@@ -34,6 +34,8 @@ public class MEC_DEF_SERIALIZED
     public GameObject prefab;
     [Header("Layer de Obstaculos")]
     public LayerMask obstacleLayer;
+    [Header("Layer de Inimigo")]
+    public LayerMask enemyLayer;
 
     [Header("Tipo de Defesa")]
     public TipoDefesa tpDefesa;
@@ -49,6 +51,8 @@ public class MEC_DEF_SERIALIZED
     public float shootRate;
     [ShowIfFlag(nameof(tpDefesa), TipoDefesa.disparoLinear)]
     public float shootRadius;
+    [ShowIfFlag(nameof(tpDefesa), TipoDefesa.disparoLinear)]
+    public float rotationSpeed;
 
     [ShowIfFlag(nameof(tpDefesa), TipoDefesa.trapDeVelocidade)]
     public float speedModifier;

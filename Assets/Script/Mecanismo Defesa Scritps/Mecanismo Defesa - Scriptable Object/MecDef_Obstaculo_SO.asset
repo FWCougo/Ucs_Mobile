@@ -15,17 +15,21 @@ MonoBehaviour:
   mecDefs:
   - name: Obstaculo Nv. 1
     cost: 45
-    hp: 10
+    hp: 20
     placeRadius: 0.35
     sprite: {fileID: 7316229441688303391, guid: e61d7270afd278440a1e6cebf1bb5cf2, type: 3}
     prefab: {fileID: 3029495908212376807, guid: e0b896906c4015b439a8fc968af5fd89, type: 3}
     obstacleLayer:
       serializedVersion: 2
       m_Bits: 192
+    enemyLayer:
+      serializedVersion: 2
+      m_Bits: 8
     tpDefesa: 2
     dmg: 0
     dmgRate: 0
     dmgRadius: 0
     shootRate: 0
     shootRadius: 0
+    rotationSpeed: 0
     speedModifier: 0
