@@ -62,6 +62,23 @@ public class GAME_MANAGER : MonoBehaviour
     {
         Coins -= _coins;
     }
+
+    /// <summary>
+    /// Passe o CUSTO de alguma coisa como parametro. Retorna verdadeiro se pode comprar, ou falso
+    /// </summary>
+    /// <param name="_custo"></param>
+    /// <returns></returns>
+    public bool ChecarSeTemDinheiro(int _custo)
+    {
+        if (_custo > Coins)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
     #endregion
 
     public void RestartGame()

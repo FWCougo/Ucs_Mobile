@@ -143,7 +143,7 @@ public class MEC_DEF_TORRETA : MonoBehaviour
 
     private void AnimacaoDeTiro()
     {
-        canoSprite.transform.DOScale(transform.localScale*1.01f,0.25f).SetEase(Ease.Flash).OnComplete(()=>
+        canoSprite.transform.DOScale(transform.localScale*1.025f,0.25f).SetEase(Ease.Flash).OnComplete(()=>
         {
             canoSprite.transform.DOScale(Vector3.one, 0.1f);
         }     

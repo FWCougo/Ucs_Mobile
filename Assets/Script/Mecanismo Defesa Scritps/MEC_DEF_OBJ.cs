@@ -18,12 +18,14 @@ public class MEC_DEF_OBJ : MonoBehaviour, IPointerClickHandler
     [Header("Canvas Local")]
     [SerializeField] private MEC_DEF_CANVA mecDef_Canva;
 
+    
     private RECEIVE_DMG receiveDMG;
     private DMG_CONTINUO dmgContinuo;
     private MEC_DEF_TORRETA torreta;
     [SerializeField] private GameObject areaDeEfeito_GO;
 
     [SerializeField] private float placeRadius;
+    private bool posicionado = false;
 
     [Header("COLISAO")]
     [SerializeField] private Collider col;
@@ -37,7 +39,8 @@ public class MEC_DEF_OBJ : MonoBehaviour, IPointerClickHandler
     private void Start(){
         AtivarColisoes(false);
         AtivarAreaDeEfeito(true);
-        mecDef_Canva.gameObject.SetActive(false);
+        AtivaCanva(false);
+        posicionado = false;
     }
 
 #if UNITY_EDITOR
@@ -58,15 +61,19 @@ public class MEC_DEF_OBJ : MonoBehaviour, IPointerClickHandler
         if(areaDeEfeito_GO!=null) areaDeEfeito_GO.SetActive(value);
     }
 
-    public void Inicializar(MEC_DEF_SO _mecDefSO, int _lv){
+    public void ReceberConfiguracoes(MEC_DEF_SO _mecDefSO, int _lv)
+    {
+        mecDef_Serial = _mecDefSO.mecDefs[_lv];
+        lv = _lv;
+    }
+
+    public void Inicializar(){
 
         AtivarColisoes(true);
         AtivarAreaDeEfeito(false);
+        TrocarCorSprite(Color.white);       
 
-        mecDef_Serial = _mecDefSO.mecDefs[_lv];
-
-        placeRadius = mecDef_Serial.placeRadius;
-        lv = _lv;
+        placeRadius = mecDef_Serial.placeRadius;       
 
         float _hp = mecDef_Serial.hp;
         float _dmg = mecDef_Serial.dmg;
@@ -113,24 +120,49 @@ public class MEC_DEF_OBJ : MonoBehaviour, IPointerClickHandler
     {
         if(!_pode)
         {
-            mainSprite.color = Color.red;
+           TrocarCorSprite(Color.red);
         }
         else
         {
-            mainSprite.color = Color.white;
+            TrocarCorSprite(Color.forestGreen);
         }
-        
     }
 
-    public void Vender()
+    public void TrocarCorSprite(Color _color)
     {
-        int _preco = (int)(mecDef_Serial.cost * 0.5f);
+        mainSprite.color =_color;
+    }
+
+    public void Comprar()
+    {
+        int _cost = mecDef_Serial.cost;
+        GAME_MANAGER.Instance.RemoveCoins(_cost);
+        MEC_DEF_MANAGER.Instance.AtivarPainelDosMecanismos(true);
+        posicionado = true;
+        
+        Inicializar();
+    }
+
+    public void Cancelar()
+    {
+        MEC_DEF_MANAGER.Instance.AtivarPainelDosMecanismos(true);
+        Destroy(gameObject);
+    }
+
+    public void Vender(int _preco)
+    {
         GAME_MANAGER.Instance.AddCoins(_preco);
         Destroy(gameObject);
     }
 
+    public void AtivaCanva(bool value)
+    {
+        mecDef_Canva.AtivaCanva(value);
+    }
+
     public void OnPointerClick(PointerEventData eventData)
     {
+        if (!posicionado) return;
         mecDef_Canva.AtivaCanva();
     }
 }

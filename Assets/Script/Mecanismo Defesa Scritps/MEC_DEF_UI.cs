@@ -13,9 +13,6 @@ public class MEC_DEF_UI : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
     [Header("Imagem")]
     [SerializeField] private Image img;
 
-    [Header("Layer")]
-    //[SerializeField] LayerMask obstacleLayer;
-
     [Header("Level")]
     [SerializeField] private int lv = 1;
 
@@ -99,52 +96,31 @@ public class MEC_DEF_UI : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
         return true;
     }
 
-    void ChecaDisponibilidade()
+    bool TemDinheiroSuficiente()
     {
-        if (!ChecarSeTemDinheiro())
-        {
-            AlterarCG(0.5f);
-        }
-    }
+        int _custo = mecDef_SO.mecDefs[lv - 1].cost;
 
-    bool ChecarSeTemDinheiro()
-    {
-        int _cost = mecDef_SO.mecDefs[lv - 1].cost;
-        int _caixinha = GAME_MANAGER.Instance.Coins;
-
-        if (_cost > _caixinha) 
-        { 
-            return false; 
-        }
-        else 
-        {             
-            return true;
-        }
-    }
-
-    void Comprar()
-    {
-        int _cost = mecDef_SO.mecDefs[lv - 1].cost;
-
-        GAME_MANAGER.Instance.RemoveCoins(_cost);
+        return GAME_MANAGER.Instance.ChecarSeTemDinheiro(_custo);
     }
 
     #region Drag Methods
     public void OnBeginDrag(PointerEventData eventData)
     {
-        if (!ChecarSeTemDinheiro()) return;
+        if (!TemDinheiroSuficiente()) return;
 
         worldPos = GetWorldPoint(eventData.position);
         worldPos.y = 0;
 
         mecDef_OBJ = InstanciarPrefab(worldPos);
 
-        MEC_DEF_MANAGER.Instance.FadeMecDef_CG(0.25f);
+        mecDef_OBJ.ReceberConfiguracoes(mecDef_SO,lv-1);
+
+        MEC_DEF_MANAGER.Instance.AtivarPainelDosMecanismos(false);
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        if (!ChecarSeTemDinheiro()) return;
+        if (!TemDinheiroSuficiente()) return;
 
         worldPos = GetWorldPoint(eventData.position);
         worldPos.y = 0;
@@ -166,23 +142,7 @@ public class MEC_DEF_UI : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        if (!ChecarSeTemDinheiro()) return;
-
-        MEC_DEF_MANAGER.Instance.FadeMecDef_CG(1);
-
-        if (PodePosicionar())
-        {
-            mecDef_OBJ.Inicializar(mecDef_SO, lv-1);
-            Comprar();
-
-            ChecaDisponibilidade();
-        }
-        else
-        {
-            Destroy(mecDef_OBJ.gameObject);
-        }
-
-        mecDef_OBJ.TrocarTransparencia(1);
+        mecDef_OBJ.AtivaCanva(true);
     }
     #endregion
 
