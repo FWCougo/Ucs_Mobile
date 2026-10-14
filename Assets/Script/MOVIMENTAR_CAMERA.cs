@@ -1,5 +1,7 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 /// <summary>
 /// Controle de câmera por touch:
@@ -37,7 +39,13 @@ public class MOVIMENTAR_CAMERA : MonoBehaviour
     [SerializeField] private bool ignoreTouchOverUI = true;
 
     private Camera cam;
-    private bool panBlockedByUI;
+
+    // IDs dos dedos que começaram o toque em cima da UI (ficam bloqueados até soltar)
+    private readonly HashSet<int> fingersBlockedByUI = new HashSet<int>();
+
+    // Reaproveitados para não gerar lixo (GC) a cada toque
+    private readonly List<RaycastResult> raycastResults = new List<RaycastResult>();
+    private PointerEventData pointerData;
 
     private void Awake()
     {
@@ -46,30 +54,91 @@ public class MOVIMENTAR_CAMERA : MonoBehaviour
 
     private void Update()
     {
+        TrackTouchesStartedOverUI();
+
         if (Input.touchCount == 1)
         {
-            HandlePan(Input.GetTouch(0));
+            Touch t = Input.GetTouch(0);
+            if (!fingersBlockedByUI.Contains(t.fingerId))
+                HandlePan(t);
         }
         else if (Input.touchCount == 2)
         {
-            HandlePinchZoom(Input.GetTouch(0), Input.GetTouch(1));
+            Touch t0 = Input.GetTouch(0);
+            Touch t1 = Input.GetTouch(1);
+
+            if (!fingersBlockedByUI.Contains(t0.fingerId) &&
+                !fingersBlockedByUI.Contains(t1.fingerId))
+                HandlePinchZoom(t0, t1);
         }
+    }
+
+    // ------------------------------------------------------------ UI CHECK
+    /// <summary>
+    /// Verifica TODOS os toques a cada frame: quando um dedo encosta na tela,
+    /// decide na hora se ele começou sobre a UI e guarda o resultado até ele soltar.
+    /// </summary>
+    private void TrackTouchesStartedOverUI()
+    {
+        if (!ignoreTouchOverUI)
+        {
+            fingersBlockedByUI.Clear();
+            return;
+        }
+
+        for (int i = 0; i < Input.touchCount; i++)
+        {
+            Touch t = Input.GetTouch(i);
+
+            switch (t.phase)
+            {
+                case TouchPhase.Began:
+                    if (IsOverUI(t.position))
+                        fingersBlockedByUI.Add(t.fingerId);
+                    break;
+
+                case TouchPhase.Ended:
+                case TouchPhase.Canceled:
+                    fingersBlockedByUI.Remove(t.fingerId);
+                    break;
+            }
+        }
+
+        if (Input.touchCount == 0)
+            fingersBlockedByUI.Clear();
+    }
+
+    /// <summary>
+    /// Faz um raycast direto na UI usando a posição do toque.
+    /// Considera APENAS resultados de GraphicRaycaster (Canvas/UI). Assim, objetos
+    /// com collider detectados pelo PhysicsRaycaster / Physics2DRaycaster da câmera
+    /// não bloqueiam o movimento.
+    /// </summary>
+    private bool IsOverUI(Vector2 screenPosition)
+    {
+        if (EventSystem.current == null)
+            return false;
+
+        if (pointerData == null)
+            pointerData = new PointerEventData(EventSystem.current);
+
+        pointerData.position = screenPosition;
+
+        raycastResults.Clear();
+        EventSystem.current.RaycastAll(pointerData, raycastResults);
+
+        for (int i = 0; i < raycastResults.Count; i++)
+        {
+            if (raycastResults[i].module is GraphicRaycaster)
+                return true;
+        }
+
+        return false;
     }
 
     // ---------------------------------------------------------------- PAN
     private void HandlePan(Touch touch)
     {
-        if (touch.phase == TouchPhase.Began)
-        {
-            panBlockedByUI = ignoreTouchOverUI &&
-                             EventSystem.current != null &&
-                             EventSystem.current.IsPointerOverGameObject(touch.fingerId);
-        }
-
-        //if (panBlockedByUI || touch.phase != TouchPhase.Moved)
-        if (panBlockedByUI)
-        return;
-
         // Quantas unidades do mundo equivalem a 1 pixel da tela
         float worldPerPixel;
         if (cam.orthographic)

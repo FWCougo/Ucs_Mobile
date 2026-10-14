@@ -2648,7 +2648,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 90
+  field of view: 100
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -2704,17 +2704,17 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e7deac1cca381d84abc6e999bc797135, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MOVIMENTAR_CAMERA
-  panSpeed: 1
+  panSpeed: 0.25
   moveOnXZPlane: 1
   perspectivePanDistance: 10
-  zoomSpeed: 0.01
+  zoomSpeed: 0.05
   minZoom: 55
-  maxZoom: 80
+  maxZoom: 100
   useBounds: 0
   minPosition: {x: -5, y: -1}
   maxPosition: {x: -3, y: -0.3}
@@ -11363,6 +11363,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   MecDef_Conteiner: {fileID: 2058793536}
   mecDefs_canvasGroup: {fileID: 998830093}
+  mecDefUI: {fileID: 0}
 --- !u!1 &1134114380
 GameObject:
   m_ObjectHideFlags: 0
