@@ -224,9 +224,9 @@ MonoBehaviour:
     m_Bits: 8
   alcance: 2
   taxaBusca: 0.2
-  velRotacao: 180
+  velRotacao: 250
   anguloTolerancia: 5
-  dano: 0.3
+  dano: 0.5
   fireRate: 0.5
   drawGizmos: 1
 --- !u!1 &4324368442436031750
