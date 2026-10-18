@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CASA : RECEIVE_DMG
+public class CASA : RECEIVE_DMG, ITouchable
 {
     public static Vector3 casaPosition;
 
@@ -16,5 +16,8 @@ public class CASA : RECEIVE_DMG
         base.Morrer();
     }
 
-
+    public void OnTouched(Vector3 worldPoint)
+    {
+        print($"Tocou na casa na posicao {worldPoint}");
+    }
 }
