@@ -21,6 +21,20 @@ public class GAME_MANAGER : MonoBehaviour
     }
     [SerializeField] private TMP_Text coins_TXT;
 
+
+    [Header("INIMIGOS")]
+    [SerializeField] private int inimigosDaWave = 0;
+    public int InimigosDaWave
+    {
+        get { return inimigosDaWave; }
+        private set
+        {
+            inimigosDaWave = value;
+            UpdateInimigosTXT();
+        }
+    }
+    [SerializeField] private TMP_Text inimigos_TXT;
+
     private void Awake()
     {
         Instance = this;
@@ -30,8 +44,6 @@ public class GAME_MANAGER : MonoBehaviour
     {
         UpdateCoinTXT();
     }
-
-
 
     public void Pause()
     {
@@ -50,7 +62,7 @@ public class GAME_MANAGER : MonoBehaviour
     #region Coins
     void UpdateCoinTXT()
     {
-        coins_TXT.text = Coins.ToString() + " P$";
+        coins_TXT.text = Coins.ToString();
     }
 
     public void AddCoins(int _coins) 
@@ -80,6 +92,26 @@ public class GAME_MANAGER : MonoBehaviour
         }
     }
     #endregion
+
+    #region InimigosWave
+    void UpdateInimigosTXT()
+    {
+        inimigos_TXT.text = InimigosDaWave.ToString();
+    }
+
+    public void SetInimigosDaWave(int _inimigos)
+    {
+        InimigosDaWave = _inimigos;
+    }
+
+    public void RemoveInimigosDaWave()
+    {
+        InimigosDaWave--;
+    }
+
+    #endregion
+
+
 
     public void RestartGame()
     {

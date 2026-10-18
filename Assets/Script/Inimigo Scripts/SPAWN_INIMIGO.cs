@@ -4,21 +4,23 @@ using UnityEngine;
 
 public class SPAWN_INIMIGO : MonoBehaviour
 {
-    [SerializeField] ENEMYPOOL[] inimigoPool;
-    [SerializeField] private int inimigoAtualPool;
+    [Header("WAVES")]
+    [SerializeField] CONF_ENEMY_WAVES confWaves;
+    [SerializeField] private int waveAtual;
 
-
-    [SerializeField] private float roundRate;
-    [SerializeField] private float spawnRate;
-
+    [Header("TEMPORIZADOR")]
     [SerializeField] private float waitToStart=3;
 
+    [Header("NAO MEXER")]
+    [SerializeField] private GameObject waveBTN;
     [SerializeField] private Transform inimigosConteiner;
+    [SerializeField] private float spawnRate;
 
     [ContextMenu("Começar a Spawnar")]
     public void ComeçarRound()
     {
         StartCoroutine("SpawnarInimigos");
+        waveBTN.SetActive(false);
     }
 
     public void ChangeSpawnRate(float f)
@@ -43,38 +45,53 @@ public class SPAWN_INIMIGO : MonoBehaviour
 
     IEnumerator SpawnarInimigos()
     {
-        yield return new WaitForSeconds(roundRate);
+        //PEGA O NUMERO DE CONFIGURACOES DE INIMIGOS QUE VAO SER SPAWNADOS NESSA WAVE
+        int _nInimigosConfAtual = confWaves.waves[waveAtual].inimigo_e_quantidade.Length;
+        int _idInimigoAtual = 0;
 
-        while (true)
+        //PEGA O NUMERO TOTAL DE INIMIGOS QUE VÃO APARECER NESSA WAVE
+        int _nInimigosNaWave = 0;
+        for (int i = 0; i < _nInimigosConfAtual; i++)
         {
-            WaitForSeconds _wait = new WaitForSeconds(waitToStart);
-            yield return _wait;
+            _nInimigosNaWave += confWaves.waves[waveAtual].inimigo_e_quantidade[i].qtdParaSpawnar;
+        }
+        GAME_MANAGER.Instance.SetInimigosDaWave(_nInimigosNaWave);
 
+        //ESPERA X TEMPO PARA COMEÇAR O ROUND
+        WaitForSeconds _wait = new WaitForSeconds(waitToStart);
+        yield return _wait;
+
+        //COMEÇA A SPAWNAR A CONFIGURACAO DE INIMIGOS ATUAL DA WAVE EM ANDAMENTO
+        while (_idInimigoAtual < _nInimigosConfAtual)
+        {
+            ENEMY_E_QUANTITY _enemy_e_qtd_ATUAL = confWaves.waves[waveAtual].inimigo_e_quantidade[_idInimigoAtual];
+
+            float currentSpawnRate = _enemy_e_qtd_ATUAL.rateDeSpawn;
+            ChangeSpawnRate(currentSpawnRate);
             _wait = new WaitForSeconds(spawnRate);
-
-            int _nInimigos = inimigoPool[inimigoAtualPool].qtdParaSpawnar;
+            int _nInimigos = _enemy_e_qtd_ATUAL.qtdParaSpawnar;
 
             for (int i = 0; i < _nInimigos; i++)
             {
-                INIMIGO _inimigo = inimigoPool[inimigoAtualPool].inimigo;
+                INIMIGO _inimigo = _enemy_e_qtd_ATUAL.inimigo;
                 _inimigo = Instantiate(_inimigo, transform.position, Quaternion.identity, inimigosConteiner);
                 _inimigo.ReceberDestino();
 
                 yield return _wait;
             }
 
-            //inimigoAtualPool++;
+            _idInimigoAtual++;
+        }
 
+        waveAtual++;
+
+        while(GAME_MANAGER.Instance.InimigosDaWave > 0)
+        {
             yield return null;
         }
 
-            
-    }
-}
+        waveBTN.SetActive(true);
 
-[Serializable]
-public class ENEMYPOOL
-{
-    public INIMIGO inimigo;
-    public int qtdParaSpawnar=1;
+        yield return null;      
+    }
 }
