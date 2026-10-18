@@ -142,7 +142,16 @@ public class MEC_DEF_UI : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        mecDef_OBJ.AtivaCanva(true);
+
+        if (PodePosicionar())
+        {
+            mecDef_OBJ.AtivaCanva(true);
+        }
+        else
+        {
+            mecDef_OBJ.Cancelar();
+        }
+        
     }
     #endregion
 
