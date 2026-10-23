@@ -142,23 +142,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Mud_Fix_1
+      name: Mud_Fix_0
       rect:
         serializedVersion: 2
-        x: 208
-        y: 456
-        width: 638
-        height: 70
+        x: 182
+        y: 218
+        width: 643
+        height: 591
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 9597342a19e9a4e80800000000000000
-      internalID: -8193562223717418663
+      spriteID: 7635b8ae5f28e0b43bcdad050eef730b
+      internalID: 6992399516404191815
       vertices: []
       indices: 
       edges: []
