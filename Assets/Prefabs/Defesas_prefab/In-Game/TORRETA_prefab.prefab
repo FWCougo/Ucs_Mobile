@@ -581,10 +581,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas_Obstacle
       objectReference: {fileID: 0}
-    - target: {fileID: 1390527954062521815, guid: 5c31ea2e09b1ffa46ac923d8ed6f6456, type: 3}
-      propertyPath: m_PresetInfoIsWorld
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5575087355664935064, guid: 5c31ea2e09b1ffa46ac923d8ed6f6456, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -611,11 +607,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5575087355664935064, guid: 5c31ea2e09b1ffa46ac923d8ed6f6456, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5575087355664935064, guid: 5c31ea2e09b1ffa46ac923d8ed6f6456, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0.7
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5575087355664935064, guid: 5c31ea2e09b1ffa46ac923d8ed6f6456, type: 3}
       propertyPath: m_LocalPosition.x

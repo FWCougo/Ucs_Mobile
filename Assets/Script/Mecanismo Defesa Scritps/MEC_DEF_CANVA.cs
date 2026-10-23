@@ -7,8 +7,6 @@ public class MEC_DEF_CANVA : MonoBehaviour
     [Header("Mecanismo Defesa REF")]
     [SerializeField] private MEC_DEF_OBJ mecDef;
 
-
-
     [Header("Canvas Local")]
     [SerializeField] private bool canvaLigado;
     [SerializeField] private Canvas canva;
@@ -17,14 +15,15 @@ public class MEC_DEF_CANVA : MonoBehaviour
     [Header("VENDER")]
     private int custo = 0;
     [SerializeField] private TMP_Text custo_TXT;
+    [SerializeField] private GameObject painelOpcoes;
     [SerializeField] private GameObject painelVender;
-    [SerializeField] private GameObject botaoVenda;
 
     private void Start()
     {
+        mecDef = GetComponentInParent<MEC_DEF_OBJ>();
         AtivarPainelPosicionar(true);
         CalcularCusto();
-        custo_TXT.text = $"Sell {custo}";
+        custo_TXT.text = $"Sell it for {custo}$?";        
     }
 
     void CalcularCusto()
@@ -37,6 +36,11 @@ public class MEC_DEF_CANVA : MonoBehaviour
         painelPosicionar.SetActive(value);
     }
 
+    public void AtivarPainelOpcoes(bool value)
+    {
+        painelOpcoes.SetActive(value);
+    }
+
     public void AtivarPainelVenda(bool value)
     {
         painelVender.SetActive(value);
@@ -45,9 +49,13 @@ public class MEC_DEF_CANVA : MonoBehaviour
     public void Posicionar()
     {
         AtivarPainelPosicionar(false);
-        botaoVenda.SetActive(true);
+        AtivarPainelOpcoes(true);
         AtivaCanva(false);
         mecDef.Comprar();
+    }
+
+    public void AtivarMovimentacao(){
+        mecDef.AtivarMovimentacao(true);
     }
 
     public void Cancelar()
@@ -65,13 +73,12 @@ public class MEC_DEF_CANVA : MonoBehaviour
         if (_value)
         {
             AtivarPainelVenda(true);
-            botaoVenda.SetActive(false);
+            AtivarPainelOpcoes(false);
         }
         else
         {
-            botaoVenda.SetActive(true);
+            AtivarPainelOpcoes(true);
             AtivarPainelVenda(false);
-            AtivaCanva(false);
         }
     }
 

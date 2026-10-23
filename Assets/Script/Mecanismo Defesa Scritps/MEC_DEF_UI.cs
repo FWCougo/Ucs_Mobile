@@ -81,7 +81,7 @@ public class MEC_DEF_UI : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
         return P + new Vector3(0,0,offsetZ);
     }
 
-    bool PodePosicionar()
+    bool VerificaSePodePosicionar()
     {
         Collider[] cols = Physics.OverlapSphere(worldPos, mecDef_SO.mecDefs[lv-1].placeRadius, mecDef_SO.mecDefs[lv - 1].obstacleLayer);
 
@@ -127,7 +127,7 @@ public class MEC_DEF_UI : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
         if (mecDef_OBJ != null)
         {
             mecDef_OBJ.transform.position = worldPos;
-            if(PodePosicionar()) 
+            if(VerificaSePodePosicionar()) 
             {
                 mecDef_OBJ.PodePosicionar(true);
             }
@@ -143,7 +143,7 @@ public class MEC_DEF_UI : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
     public void OnEndDrag(PointerEventData eventData)
     {
 
-        if (PodePosicionar())
+        if (VerificaSePodePosicionar())
         {
             mecDef_OBJ.AtivaCanva(true);
         }

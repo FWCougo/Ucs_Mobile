@@ -40,6 +40,9 @@ public class MOVIMENTAR_CAMERA : MonoBehaviour
 
     private Camera cam;
 
+    public static bool canMoveCamera;
+
+
     // IDs dos dedos que começaram o toque em cima da UI (ficam bloqueados até soltar)
     private readonly HashSet<int> fingersBlockedByUI = new HashSet<int>();
 
@@ -52,9 +55,16 @@ public class MOVIMENTAR_CAMERA : MonoBehaviour
         cam = GetComponent<Camera>();
     }
 
+    private void Start()
+    {
+        canMoveCamera = true;
+    }
+
     private void Update()
     {
         TrackTouchesStartedOverUI();
+
+        if (!canMoveCamera) return;
 
         if (Input.touchCount == 1)
         {

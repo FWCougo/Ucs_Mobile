@@ -287,6 +287,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8982736973221234616}
     m_Modifications:
+    - target: {fileID: 858041981043233118, guid: 5c31ea2e09b1ffa46ac923d8ed6f6456, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 858041981043233118, guid: 5c31ea2e09b1ffa46ac923d8ed6f6456, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 858041981043233118, guid: 5c31ea2e09b1ffa46ac923d8ed6f6456, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 858041981043233118, guid: 5c31ea2e09b1ffa46ac923d8ed6f6456, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1242957555556215142, guid: 5c31ea2e09b1ffa46ac923d8ed6f6456, type: 3}
       propertyPath: m_Name
       value: Canvas_Obstacle
@@ -294,6 +310,22 @@ PrefabInstance:
     - target: {fileID: 1390527954062521815, guid: 5c31ea2e09b1ffa46ac923d8ed6f6456, type: 3}
       propertyPath: m_PresetInfoIsWorld
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2772509987407686298, guid: 5c31ea2e09b1ffa46ac923d8ed6f6456, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2772509987407686298, guid: 5c31ea2e09b1ffa46ac923d8ed6f6456, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2772509987407686298, guid: 5c31ea2e09b1ffa46ac923d8ed6f6456, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2772509987407686298, guid: 5c31ea2e09b1ffa46ac923d8ed6f6456, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5575087355664935064, guid: 5c31ea2e09b1ffa46ac923d8ed6f6456, type: 3}
       propertyPath: m_Pivot.x
@@ -321,11 +353,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5575087355664935064, guid: 5c31ea2e09b1ffa46ac923d8ed6f6456, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5575087355664935064, guid: 5c31ea2e09b1ffa46ac923d8ed6f6456, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0.7
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5575087355664935064, guid: 5c31ea2e09b1ffa46ac923d8ed6f6456, type: 3}
       propertyPath: m_LocalPosition.x

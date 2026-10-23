@@ -13454,7 +13454,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 712ee46af6c688a419437330791154ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  confWaves: {fileID: 11400000, guid: c52e896c7308f3742ae9b3247caf06e5, type: 2}
+  confWaves: {fileID: 11400000, guid: c5b4cc67eaf359646b42164269faf16d, type: 2}
   waveAtual: 0
   waitToStart: 3
   waveBTN: {fileID: 479535672}
