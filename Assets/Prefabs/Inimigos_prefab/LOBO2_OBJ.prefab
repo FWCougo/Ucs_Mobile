@@ -84,13 +84,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   lifeImg: {fileID: 7251037670725411401}
-  maxHP: 10
-  hp: 10
+  maxHP: 20
+  hp: 20
   e_agent: {fileID: 7810641453188762888}
   e_destino: {x: 0, y: 0, z: 0}
   e_velocidadeAtual: 0
-  e_velocidadeNormal: 1
-  e_velocidadeDevagar: 0.5
+  e_velocidadeNormal: 0.6
+  e_velocidadeDevagar: 0.3
   viuObstaculo: 0
   inimigoViuObstaculo: 0
   showCollisionGizmos: 1
@@ -108,10 +108,10 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 0
-  dmgRate: 0.25
+  dmgRate: 0.5
   causandoDano: 0
-  dano: 0.5
-  coins: 10
+  dano: 0.75
+  coins: 15
 --- !u!195 &7810641453188762888
 NavMeshAgent:
   m_ObjectHideFlags: 0

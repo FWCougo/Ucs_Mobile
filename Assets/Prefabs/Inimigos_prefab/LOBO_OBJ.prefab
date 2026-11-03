@@ -726,7 +726,7 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 0
-  dmgRate: 0.25
+  dmgRate: 0.5
   causandoDano: 0
   dano: 0.5
   coins: 10
