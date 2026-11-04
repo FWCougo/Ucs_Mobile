@@ -30,10 +30,30 @@ public class GAME_MANAGER : MonoBehaviour
         private set
         {
             inimigosDaWave = value;
-            UpdateInimigosTXT();
         }
     }
-    [SerializeField] private TMP_Text inimigos_TXT;
+    [SerializeField] private int inimigosRestantes = 0;
+    public int InimigosRestantes
+    {
+        get { return inimigosRestantes; }
+        private set
+        {
+            inimigosRestantes = value;
+            UpdateInimigosRestantesTXT();
+        }
+    }
+    [SerializeField] private TMP_Text inimigosRestantes_TXT;
+
+    [SerializeField] private int totalInimigosMortos = 0;
+    public int TotalInimigosMortos
+    {
+        get { return totalInimigosMortos; }
+        private set
+        {
+            totalInimigosMortos = value;
+        }
+    }
+    [SerializeField] private TMP_Text totalInimigosMortos_TXT;
 
     private void Awake()
     {
@@ -93,10 +113,16 @@ public class GAME_MANAGER : MonoBehaviour
     }
     #endregion
 
-    #region InimigosWave
-    void UpdateInimigosTXT()
+    #region Inimigos
+    void UpdateInimigosMortosTXT()
     {
-        inimigos_TXT.text = InimigosDaWave.ToString();
+        totalInimigosMortos_TXT.text = $"Destroyed : {totalInimigosMortos}";
+    }
+
+
+    void UpdateInimigosRestantesTXT()
+    {
+        inimigosRestantes_TXT.text = $"{InimigosRestantes} / {InimigosDaWave}";
     }
 
     public void SetInimigosDaWave(int _inimigos)
@@ -106,11 +132,10 @@ public class GAME_MANAGER : MonoBehaviour
 
     public void RemoveInimigosDaWave()
     {
-        InimigosDaWave--;
+        InimigosRestantes--;
     }
 
     #endregion
-
 
 
     public void RestartGame()

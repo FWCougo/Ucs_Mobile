@@ -83,8 +83,7 @@ public class MEC_DEF_OBJ : MonoBehaviour, ITouchable, IDragHandler, IEndDragHand
     public void Inicializar(){
 
         AtivarColisoes(true);
-        AtivarAreaDeEfeito(false);
-        TrocarCorSprite(Color.white);       
+        AtivarAreaDeEfeito(false);     
 
         placeRadius = mecDef_Serial.placeRadius;       
 
@@ -167,17 +166,30 @@ public class MEC_DEF_OBJ : MonoBehaviour, ITouchable, IDragHandler, IEndDragHand
         Destroy(gameObject);
     }
 
-    public void Comprar()
+    public void Posicionar()
     {
+        TrocarCorSprite(Color.white);
+
+        MEC_DEF_MANAGER.Instance.AtivarPainelDosMecanismos(true);
+        
+        posicionado = true;
+
+        podeArrastar = false;
+
+
         if (comprado) return;
 
+        Comprar();
+
+    }
+
+    public void Comprar()
+    {
         comprado = true;
 
         int _cost = mecDef_Serial.cost;
         GAME_MANAGER.Instance.RemoveCoins(_cost);
-        MEC_DEF_MANAGER.Instance.AtivarPainelDosMecanismos(true);
-        posicionado = true;
-        
+
         Inicializar();
     }
 
@@ -250,9 +262,18 @@ public class MEC_DEF_OBJ : MonoBehaviour, ITouchable, IDragHandler, IEndDragHand
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        mecDef_Canva.AtivaCanva(true);
-        mecDef_Canva.AtivarPainelPosicionar(true);
+        if (VerificaSePodePosicionar())
+        {
+            mecDef_Canva.AtivaCanva(true);
+            mecDef_Canva.AtivarPainelPosicionar(true);
 
-        MOVIMENTAR_CAMERA.canMoveCamera = true;
+            MOVIMENTAR_CAMERA.canMoveCamera = true;
+
+        }
+    }
+
+    public void DeSelect()
+    {
+        AtivaCanva(false);
     }
 }

@@ -9,4 +9,6 @@ public interface ITouchable
 {
     /// <param name="worldPoint">Ponto do mundo onde o toque atingiu o collider.</param>
     void OnTouched(Vector3 worldPoint);
+
+    void DeSelect();
 }

@@ -28,7 +28,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1242957555556215142}
   m_LocalRotation: {x: 0.6427876, y: 0, z: 0, w: 0.7660445}
-  m_LocalPosition: {x: 0, y: 0, z: 0.8657}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -38,9 +38,9 @@ RectTransform:
   - {fileID: 6052689688884565771}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 80, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0.23571777}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 3, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &2126899919173780794
@@ -88,7 +88,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &3440730370488413714
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -620,7 +620,7 @@ GameObject:
   - component: {fileID: 5381966427750291441}
   - component: {fileID: 3464606501472173468}
   m_Layer: 0
-  m_Name: Options_PAINEL
+  m_Name: PlaceObj_PAINEL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -725,8 +725,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.HorizontalLayoutGroup
   m_Padding:
-    m_Left: 10
-    m_Right: 10
+    m_Left: 0
+    m_Right: 0
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 4
@@ -1318,7 +1318,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 2.25, y: -0.3272}
+  m_AnchoredPosition: {x: 2.25, y: -0.32720947}
   m_SizeDelta: {x: 0.75, y: 0.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4503011061783093913
@@ -1525,7 +1525,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.1728}
+  m_AnchoredPosition: {x: 0, y: -0.17279053}
   m_SizeDelta: {x: 0, y: -0.3456}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &9054561901430120298
@@ -1588,7 +1588,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.1728}
+  m_AnchoredPosition: {x: 0, y: -0.17279053}
   m_SizeDelta: {x: 0, y: 0.3456}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7045154481594192414
@@ -1947,8 +1947,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7344206103869816471}
         m_TargetAssemblyTypeName: MEC_DEF_CANVA, Assembly-CSharp
-        m_MethodName: PainelDeVenda
-        m_Mode: 6
+        m_MethodName: AtivarMovimentacao
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2126,7 +2126,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0.75, y: -0.3272}
+  m_AnchoredPosition: {x: 0.75, y: -0.32720947}
   m_SizeDelta: {x: 0.75, y: 0.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6451627757672703008

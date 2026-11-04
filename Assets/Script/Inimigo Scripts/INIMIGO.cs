@@ -164,8 +164,12 @@ public class INIMIGO : RECEIVE_DMG
 
     override protected void Morrer()
     {
-        GAME_MANAGER.Instance.AddCoins(coins);
-        GAME_MANAGER.Instance.RemoveInimigosDaWave();
+        if (estaVivo)
+        {
+            GAME_MANAGER.Instance.AddCoins(coins);
+            GAME_MANAGER.Instance.RemoveInimigosDaWave();
+
+        }
 
         base.Morrer();
     }

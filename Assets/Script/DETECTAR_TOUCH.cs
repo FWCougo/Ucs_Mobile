@@ -38,6 +38,9 @@ public class DETECTAR_TOUCH : MonoBehaviour
     [Header("UI")]
     [SerializeField] private bool ignoreTouchOverUI = true;
 
+    [Header("Lista de Touchables")]
+    [SerializeField] private List<ITouchable> touchables = new List<ITouchable>();
+
     // Estado do toque em andamento
     private bool tracking;
     private bool cancelled;
@@ -183,6 +186,14 @@ public class DETECTAR_TOUCH : MonoBehaviour
 
         Ray ray = targetCamera.ScreenPointToRay(screenPosition);
 
+        if(touchables.Count > 0)
+        {
+            foreach (ITouchable t in touchables)
+            {
+                t?.DeSelect();
+            }
+        }
+
         // 3D
         if (detect3D &&
             Physics.Raycast(ray, out RaycastHit hit3D, maxDistance, touchableLayers))
@@ -191,6 +202,7 @@ public class DETECTAR_TOUCH : MonoBehaviour
             ITouchable touchable = hit3D.collider.GetComponentInParent<ITouchable>();
             if (touchable != null)
             {
+                touchables.Add(touchable);
                 touchable.OnTouched(hit3D.point);
                 return;
             }
@@ -204,7 +216,10 @@ public class DETECTAR_TOUCH : MonoBehaviour
             {
                 ITouchable touchable = hit2D.collider.GetComponentInParent<ITouchable>();
                 if (touchable != null)
+                {
+                    touchables.Add(touchable);
                     touchable.OnTouched(hit2D.point);
+                }
             }
         }
     }

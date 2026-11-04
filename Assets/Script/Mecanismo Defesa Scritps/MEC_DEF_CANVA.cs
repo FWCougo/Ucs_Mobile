@@ -51,7 +51,7 @@ public class MEC_DEF_CANVA : MonoBehaviour
         AtivarPainelPosicionar(false);
         AtivarPainelOpcoes(true);
         AtivaCanva(false);
-        mecDef.Comprar();
+        mecDef.Posicionar();
     }
 
     public void AtivarMovimentacao(){
@@ -83,10 +83,12 @@ public class MEC_DEF_CANVA : MonoBehaviour
     }
 
     public void AtivaCanva(bool value)
-    {       
-        if(canva!=null)
+    {
+        canvaLigado=value;
+
+        if (canva!=null)
         {
-            canva.gameObject.SetActive(value);
+            canva.gameObject.SetActive(canvaLigado);
         }
         
     }

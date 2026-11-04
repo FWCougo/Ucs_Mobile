@@ -6,6 +6,7 @@ public class RECEIVE_DMG : MonoBehaviour, IDamageable
     [HideInInspector] public Image lifeImg;
     [SerializeField] protected float maxHP=10;
     [SerializeField] private float hp;
+    public bool estaVivo = true;
     public float HP {  
         get { 
             return hp; 
@@ -32,12 +33,14 @@ public class RECEIVE_DMG : MonoBehaviour, IDamageable
 
     protected virtual void Start()
     {
+        estaVivo = true;
         hp = maxHP;
         AtualizarHp();
     }
 
     protected virtual void Morrer()
     {
+        estaVivo = false;
         gameObject.SetActive(false);
         Destroy(gameObject, 1);
     }

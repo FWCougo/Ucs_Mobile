@@ -31,4 +31,10 @@ public class CASA : RECEIVE_DMG, ITouchable
         AtivarCanva(canvaAtivo);
         
     }
+
+    public void DeSelect()
+    {
+        canvaAtivo=false;
+        AtivarCanva(canvaAtivo);
+    }
 }
