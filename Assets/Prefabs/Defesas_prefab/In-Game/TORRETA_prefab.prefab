@@ -147,8 +147,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.95485735, y: 1, z: 0.73949224}
+  m_Center: {x: -0.006206274, y: 0, z: -0.13025388}
 --- !u!114 &2410050605274583368
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -184,6 +184,8 @@ MonoBehaviour:
     speedModifier: 0
   mainSprite: {fileID: 617795889493863100}
   lv: 0
+  comprado: 0
+  podeArrastar: 0
   mecDef_Canva: {fileID: 1121197079503610957}
   areaDeEfeito_GO: {fileID: 4324368442436031750}
   placeRadius: 0
@@ -577,9 +579,41 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4989694342280971266}
     m_Modifications:
+    - target: {fileID: 858041981043233118, guid: 5c31ea2e09b1ffa46ac923d8ed6f6456, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 858041981043233118, guid: 5c31ea2e09b1ffa46ac923d8ed6f6456, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 858041981043233118, guid: 5c31ea2e09b1ffa46ac923d8ed6f6456, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 858041981043233118, guid: 5c31ea2e09b1ffa46ac923d8ed6f6456, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1242957555556215142, guid: 5c31ea2e09b1ffa46ac923d8ed6f6456, type: 3}
       propertyPath: m_Name
       value: Canvas_Obstacle
+      objectReference: {fileID: 0}
+    - target: {fileID: 2772509987407686298, guid: 5c31ea2e09b1ffa46ac923d8ed6f6456, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2772509987407686298, guid: 5c31ea2e09b1ffa46ac923d8ed6f6456, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2772509987407686298, guid: 5c31ea2e09b1ffa46ac923d8ed6f6456, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2772509987407686298, guid: 5c31ea2e09b1ffa46ac923d8ed6f6456, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5575087355664935064, guid: 5c31ea2e09b1ffa46ac923d8ed6f6456, type: 3}
       propertyPath: m_Pivot.x

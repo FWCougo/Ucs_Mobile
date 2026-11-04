@@ -16,14 +16,46 @@ MonoBehaviour:
   - inimigo_e_quantidade:
     - inimigo: {fileID: 4363622424360941723, guid: b3d664f2d3f985f4fb8d254be2287ff1, type: 3}
       qtdParaSpawnar: 5
-      rateDeSpawn: 1
-    - inimigo: {fileID: 1661108020725207679, guid: 96c1d3f4df5ed324a8e44b6f7fe2f6e2, type: 3}
-      qtdParaSpawnar: 2
-      rateDeSpawn: 3
+      rateDeSpawn: 2
     - inimigo: {fileID: 4363622424360941723, guid: b3d664f2d3f985f4fb8d254be2287ff1, type: 3}
       qtdParaSpawnar: 5
-      rateDeSpawn: 1
+      rateDeSpawn: 5
+    - inimigo: {fileID: 4363622424360941723, guid: b3d664f2d3f985f4fb8d254be2287ff1, type: 3}
+      qtdParaSpawnar: 3
+      rateDeSpawn: 2.5
+    - inimigo: {fileID: 4363622424360941723, guid: b3d664f2d3f985f4fb8d254be2287ff1, type: 3}
+      qtdParaSpawnar: 5
+      rateDeSpawn: 0.5
   - inimigo_e_quantidade:
+    - inimigo: {fileID: 4363622424360941723, guid: b3d664f2d3f985f4fb8d254be2287ff1, type: 3}
+      qtdParaSpawnar: 20
+      rateDeSpawn: 1
     - inimigo: {fileID: 1661108020725207679, guid: 96c1d3f4df5ed324a8e44b6f7fe2f6e2, type: 3}
       qtdParaSpawnar: 10
-      rateDeSpawn: 2
+      rateDeSpawn: 3
+  - inimigo_e_quantidade:
+    - inimigo: {fileID: 4363622424360941723, guid: b3d664f2d3f985f4fb8d254be2287ff1, type: 3}
+      qtdParaSpawnar: 30
+      rateDeSpawn: 1
+    - inimigo: {fileID: 1661108020725207679, guid: 96c1d3f4df5ed324a8e44b6f7fe2f6e2, type: 3}
+      qtdParaSpawnar: 20
+      rateDeSpawn: 1
+  - inimigo_e_quantidade:
+    - inimigo: {fileID: 4363622424360941723, guid: b3d664f2d3f985f4fb8d254be2287ff1, type: 3}
+      qtdParaSpawnar: 30
+      rateDeSpawn: 0.5
+    - inimigo: {fileID: 1661108020725207679, guid: 96c1d3f4df5ed324a8e44b6f7fe2f6e2, type: 3}
+      qtdParaSpawnar: 20
+      rateDeSpawn: 1
+    - inimigo: {fileID: 4363622424360941723, guid: b3d664f2d3f985f4fb8d254be2287ff1, type: 3}
+      qtdParaSpawnar: 20
+      rateDeSpawn: 1
+    - inimigo: {fileID: 4363622424360941723, guid: b3d664f2d3f985f4fb8d254be2287ff1, type: 3}
+      qtdParaSpawnar: 20
+      rateDeSpawn: 0.6
+    - inimigo: {fileID: 1661108020725207679, guid: 96c1d3f4df5ed324a8e44b6f7fe2f6e2, type: 3}
+      qtdParaSpawnar: 40
+      rateDeSpawn: 3
+    - inimigo: {fileID: 4363622424360941723, guid: b3d664f2d3f985f4fb8d254be2287ff1, type: 3}
+      qtdParaSpawnar: 20
+      rateDeSpawn: 0.6
