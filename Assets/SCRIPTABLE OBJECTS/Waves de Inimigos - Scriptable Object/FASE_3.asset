@@ -65,3 +65,10 @@ MonoBehaviour:
     - inimigo: {fileID: 4363622424360941723, guid: b3d664f2d3f985f4fb8d254be2287ff1, type: 3}
       qtdParaSpawnar: 20
       rateDeSpawn: 0.6
+    - inimigo: {fileID: 1661108020725207679, guid: 7db67cde6d385824991bb621ffea4d43, type: 3}
+      qtdParaSpawnar: 1
+      rateDeSpawn: 1
+  - inimigo_e_quantidade:
+    - inimigo: {fileID: 1661108020725207679, guid: 7db67cde6d385824991bb621ffea4d43, type: 3}
+      qtdParaSpawnar: 10
+      rateDeSpawn: 1.5
