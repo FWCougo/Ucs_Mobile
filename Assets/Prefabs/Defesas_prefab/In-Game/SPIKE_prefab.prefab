@@ -182,7 +182,10 @@ MonoBehaviour:
     rotationSpeed: 0
     speedModifier: 0
   mainSprite: {fileID: 7875142118815148560}
+  mainShadowSprite: {fileID: 4034839676225272192}
   lv: 0
+  comprado: 0
+  podeArrastar: 0
   mecDef_Canva: {fileID: 3065397293635015298}
   areaDeEfeito_GO: {fileID: 0}
   placeRadius: 0.25

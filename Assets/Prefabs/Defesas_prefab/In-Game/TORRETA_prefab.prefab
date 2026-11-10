@@ -183,6 +183,7 @@ MonoBehaviour:
     rotationSpeed: 0
     speedModifier: 0
   mainSprite: {fileID: 617795889493863100}
+  mainShadowSprite: {fileID: 1201295643531803934}
   lv: 0
   comprado: 0
   podeArrastar: 0

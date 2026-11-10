@@ -54,7 +54,7 @@ public class MEC_DEF_UI : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
     {
         int _cost = mecDef_SO.mecDefs[lv - 1].cost;
 
-        cost_TXT.text = _cost.ToString() + " P$";
+        cost_TXT.text = _cost.ToString();
     }
 
     MEC_DEF_OBJ InstanciarPrefab(Vector3 _posiiton)

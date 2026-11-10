@@ -56,6 +56,7 @@ public class SPAWN_INIMIGO : MonoBehaviour
             _nInimigosNaWave += confWaves.waves[waveAtual].inimigo_e_quantidade[i].qtdParaSpawnar;
         }
         GAME_MANAGER.Instance.SetInimigosDaWave(_nInimigosNaWave);
+        GAME_MANAGER.Instance.SetInimigosRestantes(_nInimigosNaWave);
 
         //ESPERA X TEMPO PARA COMEÇAR O ROUND
         WaitForSeconds _wait = new WaitForSeconds(waitToStart);
@@ -85,7 +86,7 @@ public class SPAWN_INIMIGO : MonoBehaviour
 
         waveAtual++;
 
-        while(GAME_MANAGER.Instance.InimigosDaWave > 0)
+        while(GAME_MANAGER.Instance.InimigosRestantes > 0)
         {
             yield return null;
         }

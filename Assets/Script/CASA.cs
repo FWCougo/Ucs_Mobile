@@ -27,14 +27,14 @@ public class CASA : RECEIVE_DMG, ITouchable
 
     public void OnTouched(Vector3 worldPoint)
     {
-        canvaAtivo = !canvaAtivo;
-        AtivarCanva(canvaAtivo);
+        //canvaAtivo = !canvaAtivo;
+        //AtivarCanva(canvaAtivo);
         
     }
 
     public void DeSelect()
     {
-        canvaAtivo=false;
-        AtivarCanva(canvaAtivo);
+       // canvaAtivo=false;
+       // AtivarCanva(canvaAtivo);
     }
 }

@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.AI;
 
 public class GAME_MANAGER : MonoBehaviour
 {
@@ -8,7 +9,18 @@ public class GAME_MANAGER : MonoBehaviour
 
     [SerializeField] private bool pause;
 
-    [Header("Moedas")]
+    [Header("FASES")]
+    [SerializeField] private int levels = 0;
+    public int Levels
+    {
+        get { return levels; }
+        private set
+        {
+            levels = value;
+        }
+    }
+
+    [Header("MOEDAS")]
     [SerializeField] private int coins = 0;
     public int Coins
     {
@@ -20,7 +32,6 @@ public class GAME_MANAGER : MonoBehaviour
         }
     }
     [SerializeField] private TMP_Text coins_TXT;
-
 
     [Header("INIMIGOS")]
     [SerializeField] private int inimigosDaWave = 0;
@@ -57,27 +68,19 @@ public class GAME_MANAGER : MonoBehaviour
 
     private void Awake()
     {
-        Instance = this;
+        if(Instance==null)
+            Instance = this;
+        else 
+            Destroy(gameObject);
+
+
+        CarregarLevel();
     }
 
     private void Start()
-    {
+    {        
         UpdateCoinTXT();
     }
-
-    public void Pause()
-    {
-        pause = !pause;
-
-        if(pause){
-            Time.timeScale = 0;
-            MENU_MANAGER.Instance.OpenMenu("PAUSE_MENU");
-        }
-        else{
-            Time.timeScale = 1;
-            MENU_MANAGER.Instance.OpenMenu("GAME_MENU");
-        }
-    } 
 
     #region Coins
     void UpdateCoinTXT()
@@ -122,12 +125,16 @@ public class GAME_MANAGER : MonoBehaviour
 
     void UpdateInimigosRestantesTXT()
     {
-        inimigosRestantes_TXT.text = $"{InimigosRestantes} / {InimigosDaWave}";
+        inimigosRestantes_TXT.text = $"{InimigosRestantes}/{InimigosDaWave}";
     }
 
     public void SetInimigosDaWave(int _inimigos)
     {
         InimigosDaWave = _inimigos;
+    }
+    public void SetInimigosRestantes(int _inimigos)
+    {
+        InimigosRestantes = _inimigos;
     }
 
     public void RemoveInimigosDaWave()
@@ -137,7 +144,59 @@ public class GAME_MANAGER : MonoBehaviour
 
     #endregion
 
+    #region Level
+    private void SalvarLevel()
+    {
+        PlayerPrefs.SetInt("UNLOCKED_LEVELS", Levels);
+    }
+    private void CarregarLevel()
+    {
+        Levels = PlayerPrefs.GetInt("UNLOCKED_LEVELS");
 
+        if(Levels == 0)
+        {
+            Levels = 1;
+        }
+    }
+    #endregion
+
+    [SerializeField] NavMeshAgent[] allAgents;
+    private void GetAllNavMeshAgents()
+    {
+        allAgents = FindObjectsByType<NavMeshAgent>(FindObjectsSortMode.None);
+    }
+    private void ChangeAgentsState(bool _value)
+    {
+        foreach (NavMeshAgent agent in allAgents)
+        {
+            agent.enabled = _value;
+
+            //if (agent.isActiveAndEnabled)
+            //{
+            //    agent.isStopped = _value;
+            //}
+        }
+    }
+
+    public void Pause()
+    {
+        pause = !pause;
+
+        if(pause){
+           // GetAllNavMeshAgents();
+            Time.timeScale = 0;
+            MENU_MANAGER.Instance.OpenMenu("PAUSE_MENU");
+           // ChangeAgentsState(false);
+        }
+        else{
+            Time.timeScale = 1;
+            MENU_MANAGER.Instance.OpenMenu("GAME_MENU");
+            //ChangeAgentsState(true);
+        }
+
+        
+
+    } 
     public void RestartGame()
     {
         SceneManager.LoadScene(0);

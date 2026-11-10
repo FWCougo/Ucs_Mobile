@@ -17,7 +17,7 @@ MonoBehaviour:
     cost: 45
     hp: 20
     placeRadius: 0.35
-    sprite: {fileID: 7316229441688303391, guid: e61d7270afd278440a1e6cebf1bb5cf2, type: 3}
+    sprite: {fileID: 329538072612841785, guid: 9a174b31e14ad6542bca93b4ca01b4f9, type: 3}
     prefab: {fileID: 3029495908212376807, guid: e0b896906c4015b439a8fc968af5fd89, type: 3}
     obstacleLayer:
       serializedVersion: 2

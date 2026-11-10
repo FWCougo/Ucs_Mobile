@@ -12,6 +12,7 @@ public class MEC_DEF_OBJ : MonoBehaviour, ITouchable, IDragHandler, IEndDragHand
     }
 
     [SerializeField] private SpriteRenderer mainSprite;
+    [SerializeField] private SpriteRenderer mainShadowSprite;
     [SerializeField] private int lv;
 
     Vector3 worldPos;
@@ -43,7 +44,6 @@ public class MEC_DEF_OBJ : MonoBehaviour, ITouchable, IDragHandler, IEndDragHand
     private void Awake()
     {
         cam = Camera.main;
-
         mecDef_Canva = GetComponentInChildren<MEC_DEF_CANVA>();        
     }
 
@@ -77,6 +77,7 @@ public class MEC_DEF_OBJ : MonoBehaviour, ITouchable, IDragHandler, IEndDragHand
     {
         mecDef_Serial = _mecDefSO.mecDefs[_lv];
         mainSprite.sprite = mecDef_Serial.sprite;
+        mainShadowSprite.sprite = mecDef_Serial.sprite;
         lv = _lv;
     }
 
@@ -210,7 +211,9 @@ public class MEC_DEF_OBJ : MonoBehaviour, ITouchable, IDragHandler, IEndDragHand
 
         print($"Tocou em {mecDef_Serial.name}");
 
-        mecDef_Canva.AtivaCanva();
+        //mecDef_Canva.AtivaCanva();
+
+        CANVAS_MANAGER.Instance.SelectedPainel_STATE(this);
 
     }
 
