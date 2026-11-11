@@ -148,10 +148,10 @@ TextureImporter:
       name: Spikes_Fix_0
       rect:
         serializedVersion: 2
-        x: 110
-        y: 143
-        width: 105
-        height: 167
+        x: 0
+        y: 0
+        width: 512
+        height: 512
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -166,55 +166,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: Spikes_Fix_1
-      rect:
-        serializedVersion: 2
-        x: 198
-        y: 83
-        width: 107
-        height: 303
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: adca34ef9382408b0800000000000000
-      internalID: -5186976641279873830
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Spikes_Fix_2
-      rect:
-        serializedVersion: 2
-        x: 286
-        y: 145
-        width: 105
-        height: 167
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4d165dcbb6777ede0800000000000000
-      internalID: -1303942262487162412
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 76401df932846724aaf96f075fd63b9e
     internalID: 0
     vertices: []
     indices: 
