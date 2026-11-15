@@ -17,6 +17,7 @@ public class GAME_MANAGER : MonoBehaviour
         private set
         {
             levels = value;
+            SalvarLevel();
         }
     }
 
@@ -32,6 +33,23 @@ public class GAME_MANAGER : MonoBehaviour
         }
     }
     [SerializeField] private TMP_Text coins_TXT;
+
+    [Header("PARAFUSOS")]
+    [SerializeField] private int parafusos = 0;
+    public int Parafusos
+    {
+        get { return parafusos; }
+        private set
+        {
+            parafusos = value;
+        }
+    }
+
+    [Header("UPGRADE LEVELS")]
+    [SerializeField] public int torretaLV = 0;
+    [SerializeField] public int obstaculoLV = 0;
+    [SerializeField] public int trapLV = 0;
+    [SerializeField] public int slowLV = 0;
 
     [Header("INIMIGOS")]
     [SerializeField] private int inimigosDaWave = 0;
@@ -73,7 +91,7 @@ public class GAME_MANAGER : MonoBehaviour
         else 
             Destroy(gameObject);
 
-
+        CarregarUpgrades();
         CarregarLevel();
     }
 
@@ -160,6 +178,41 @@ public class GAME_MANAGER : MonoBehaviour
     }
     #endregion
 
+    #region Upgrades
+    private void SalvarUpgrades()
+    {
+        PlayerPrefs.SetInt("OBSTACULO_LV", obstaculoLV);
+        PlayerPrefs.SetInt("SLOW_LV", slowLV);
+        PlayerPrefs.SetInt("TRAP_LV", trapLV);
+        PlayerPrefs.SetInt("TORRETA_LV", torretaLV);
+    }
+    private void CarregarUpgrades()
+    {
+        obstaculoLV = PlayerPrefs.GetInt("OBSTACULO_LV");
+        slowLV = PlayerPrefs.GetInt("SLOW_LV");
+        trapLV = PlayerPrefs.GetInt("TRAP_LV");
+        torretaLV = PlayerPrefs.GetInt("TORRETA_LV");
+
+        if (obstaculoLV == 0)
+        {
+            obstaculoLV = 1;
+        }
+        if (slowLV == 0)
+        {
+            slowLV = 1;
+        }
+        if (trapLV == 0)
+        {
+            trapLV = 1;
+        }
+        if (torretaLV == 0)
+        {
+            torretaLV = 1;
+        }
+
+    }
+    #endregion
+
     [SerializeField] NavMeshAgent[] allAgents;
     private void GetAllNavMeshAgents()
     {
@@ -176,6 +229,14 @@ public class GAME_MANAGER : MonoBehaviour
             //    agent.isStopped = _value;
             //}
         }
+    }
+
+    public void WON()
+    {
+        MENU_MANAGER.Instance.OpenMenu("WON_MENU");
+        Levels++;
+        CANVAS_MANAGER.Instance.ActivateLevelButtons();
+        // MENU_MANAGER.Instance.OpenMenu("LEVELSELECT_MENU");
     }
 
     public void Pause()

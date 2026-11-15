@@ -36,8 +36,27 @@ public class MEC_DEF_UI : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
 
     void Start()
     {
+        PegarLevel();
         UpdateCostUI();
         SetarImagem();
+    }
+
+    private void PegarLevel() {
+        switch (mecDef_SO.mecDefs[0].tpDefesa)
+        {
+            case TipoDefesa.obstaculo:
+                lv = GAME_MANAGER.Instance.obstaculoLV;
+                break;
+            case TipoDefesa.trapDeVelocidade:
+                lv = GAME_MANAGER.Instance.slowLV;
+                break;
+            case TipoDefesa.disparoLinear:
+                lv = GAME_MANAGER.Instance.torretaLV;
+                break;
+            case TipoDefesa.trapDeDano:
+                lv = GAME_MANAGER.Instance.trapLV;
+                break;
+        }
     }
 
     void SetarImagem()

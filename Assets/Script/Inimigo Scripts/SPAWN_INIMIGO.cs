@@ -91,7 +91,13 @@ public class SPAWN_INIMIGO : MonoBehaviour
             yield return null;
         }
 
-        waveBTN.SetActive(true);
+        if(waveAtual < confWaves.waves.Length) { 
+            waveBTN.SetActive(true);
+        }
+        else
+        {
+            GAME_MANAGER.Instance.WON();
+        }
 
         yield return null;      
     }

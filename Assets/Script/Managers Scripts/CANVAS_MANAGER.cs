@@ -42,26 +42,27 @@ public class CANVAS_MANAGER : MonoBehaviour
     }
 
     #region LevelBtns
-    [ContextMenu("ATIVAR BOTAO")]
-    private void ActivateLevelButtons()
+    public void ActivateLevelButtons()
     {
         int _fasesLiberadas = GAME_MANAGER.Instance.Levels;
 
         for (int i = 0; i < levelBTNs.Length; i++)
         {            
-            levelBTNs[i].interactable = false;   
+            if(i<_fasesLiberadas)
+                levelBTNs[i].interactable = true;   
+            else
+                levelBTNs[i].interactable = false;
         }
 
-        for (int i = 0; i < _fasesLiberadas; i++)
-        {
-            levelBTNs[i].interactable = true;
-        }
+//        for (int i = 0; i < _fasesLiberadas; i++)
+//        {
+//            levelBTNs[i].interactable = true;
+//        }
 
     }
     #endregion
 
     #region SelectedPainel
-
     public void SelectedPainel_STATE(bool value)
     {
         selectedPAINEL_active = value;
