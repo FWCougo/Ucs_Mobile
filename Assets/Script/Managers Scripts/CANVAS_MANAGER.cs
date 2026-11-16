@@ -8,6 +8,9 @@ public class CANVAS_MANAGER : MonoBehaviour
 
     private SPAWN_INIMIGO spawn_INIMIGO;
 
+    [Header("LOJA")]
+    [SerializeField] TMP_Text store_Parafuso_TXT;
+
     [Header("PAINEL DEFESA SELECIONADA")]
     [SerializeField] private GameObject selected_PAINEL;
     [SerializeField] private GameObject actionSelected_PAINEL;
@@ -91,8 +94,8 @@ public class CANVAS_MANAGER : MonoBehaviour
         actionSelected_PAINEL.SetActive(false);
     }
     public void SelectedPainel_STATE(MEC_DEF_OBJ _mecDefObj)
-    {  
-        if(selected_MecDefOBJ != _mecDefObj)
+    {
+        if (selected_MecDefOBJ != _mecDefObj)
             selectedPAINEL_active = true;
         else
             selectedPAINEL_active = !selectedPAINEL_active;
@@ -104,6 +107,7 @@ public class CANVAS_MANAGER : MonoBehaviour
 
         SelectedPainel_ChangeInfo();
     }
+
     private void SelectedPainel_ChangeInfo()
     {
         selectedOBJ_Image.sprite = selected_MecDefOBJ.MecDef_Serial.sprite;
@@ -114,10 +118,13 @@ public class CANVAS_MANAGER : MonoBehaviour
         selected_PAINEL.SetActive(false);
         actionSelected_PAINEL.SetActive(true);
     }
+
     public void SelectedPainel_Sell()
     {
-        action_TXT.text = $"Sell?"; 
-        selectedOBJ_cost = selected_MecDefOBJ.MecDef_Serial.cost;
+        selectedOBJ_confirmAction_BTN.interactable = true;
+
+        action_TXT.text = $"Sell?";
+        selectedOBJ_cost = (int)(selected_MecDefOBJ.MecDef_Serial.cost * 0.8f);
         selectedOBJ_cost_TXT.text = "You'll get " + selectedOBJ_cost.ToString();
         selectedOBJ_confirmAction_BTN.onClick.RemoveAllListeners();
         selectedOBJ_confirmAction_BTN.onClick.AddListener(Vender);
@@ -125,8 +132,10 @@ public class CANVAS_MANAGER : MonoBehaviour
     }
     public void SelectedPainel_Move()
     {
+        selectedOBJ_confirmAction_BTN.interactable = true;
+
         action_TXT.text = $"Move?";
-        selectedOBJ_cost = (int)(selected_MecDefOBJ.MecDef_Serial.cost*0.8f);
+        selectedOBJ_cost = 25;
         selectedOBJ_cost_TXT.text = "Cost " + selectedOBJ_cost.ToString();
         selectedOBJ_confirmAction_BTN.onClick.RemoveAllListeners();
         selectedOBJ_confirmAction_BTN.onClick.AddListener(AtivarMovimentacao);
@@ -134,12 +143,50 @@ public class CANVAS_MANAGER : MonoBehaviour
     }
     public void SelectedPainel_Upgrade()
     {
-        action_TXT.text = $"Upgrade?";
-        selectedOBJ_cost = (int)(selected_MecDefOBJ.MecDef_Serial.cost);
-        selectedOBJ_cost_TXT.text = "Cost " + selectedOBJ_cost.ToString();
-        selectedOBJ_confirmAction_BTN.onClick.RemoveAllListeners();
-        selectedOBJ_confirmAction_BTN.onClick.AddListener(Upgrade);
+
+        int _maxPossibleLevel = PegarLevel(selected_MecDefOBJ.MecDef_Serial);
+        int _currentLV = selected_MecDefOBJ.lv+1;
+
+        print($"_maxPossibleLevel {_maxPossibleLevel}");
+        print($"_currentLV {_currentLV}");
+
+        if(_currentLV >= _maxPossibleLevel)
+        {
+            action_TXT.text = $"NO UPGRADES AVALIABLE";
+            selectedOBJ_cost_TXT.text = "Check the store to buy upgrades";
+            selectedOBJ_confirmAction_BTN.interactable = false;
+        }
+        else
+        {
+            selectedOBJ_confirmAction_BTN.interactable = true;
+
+            action_TXT.text = $"Upgrade?";
+            selectedOBJ_cost = (int)(selected_MecDefOBJ.MecDef_Serial.cost);
+            selectedOBJ_cost_TXT.text = "Cost " + selectedOBJ_cost.ToString();
+            selectedOBJ_confirmAction_BTN.onClick.RemoveAllListeners();
+            selectedOBJ_confirmAction_BTN.onClick.AddListener(Upgrade);            
+        }
+
         SelectedPainel_ActionPainel();
+
+    }
+
+    private int PegarLevel(MEC_DEF_SERIALIZED mecDef_Serial)
+    {
+        switch (mecDef_Serial.tpDefesa)
+        {
+            case TipoDefesa.obstaculo:
+               return GAME_MANAGER.Instance.ObstaculoLV;
+            case TipoDefesa.trapDeVelocidade:
+                return GAME_MANAGER.Instance.SlowLV;
+            case TipoDefesa.disparoLinear:
+                return GAME_MANAGER.Instance.TorretaLV;
+                break;
+            case TipoDefesa.trapDeDano:
+                return GAME_MANAGER.Instance.TrapLV;
+        }
+
+        return 0;
     }
 
     public void Vender()
@@ -148,26 +195,30 @@ public class CANVAS_MANAGER : MonoBehaviour
         SelectedPainel_STATE(false);
     }
     public void AtivarMovimentacao()
-    {
+    {       
         selected_MecDefOBJ.AtivarMovimentacao(true);
         MEC_DEF_MANAGER.Instance.AtivarPainelDosMecanismos(false);
         SelectedPainel_STATE(false);
     }
     public void Upgrade()
     {
-
         SelectedPainel_STATE(false);
+        selected_MecDefOBJ.Upgrade();
     }
-
     public void AtivaPainelPosicionar()
     {
         SelectedPainel_ActionPainel();
+
+        action_TXT.text = $"Place it here?";
+        selectedOBJ_cost_TXT.text = "";
+
         selectedOBJ_confirmAction_BTN.onClick.RemoveAllListeners();
-        selectedOBJ_confirmAction_BTN.onClick.AddListener(AtivarMovimentacao);
+        selectedOBJ_confirmAction_BTN.onClick.AddListener(Posicionar);
     }
     public void Posicionar()
     {
-        selected_MecDefOBJ.Posicionar();
+        SelectedPainel_STATE(false);
+        selected_MecDefOBJ.FinalizarMovimentacao();
     }
 
     #endregion
@@ -188,6 +239,12 @@ public class CANVAS_MANAGER : MonoBehaviour
     public void ConfirmarUpgrade()
     {
         LOJA_MANAGER.Instance.ConfirmarUpgrade();
+        TrocarParafusoTxt();
+    }
+
+    public void TrocarParafusoTxt()
+    {
+        store_Parafuso_TXT.text = GAME_MANAGER.Instance.Parafusos.ToString();
     }
 
     public void AtivarTelaUpgrade(bool _value)

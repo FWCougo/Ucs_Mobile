@@ -365,9 +365,9 @@ public class GAME_MANAGER : MonoBehaviour
 
     private float PontuacaoDoNivel()
     {
-        float _pontuacaoTotal = 100;
+        float _pontuacaoTotal = levels_SO[selectedLevel].levelParafusosRecompensa;
 
-        if(coinsSpent < 500)
+        if(coinsSpent < levels_SO[selectedLevel].desafioCoins)
         {
             _pontuacaoTotal *= 1;
         }
@@ -391,6 +391,8 @@ public class GAME_MANAGER : MonoBehaviour
 
     private IEnumerator LoadGameScene(int _lv)
     {
+        Time.timeScale = 1;
+
         if (selectedLevel != 0)
         {
             yield return SceneManager.UnloadSceneAsync(selectedLevel);
@@ -441,5 +443,24 @@ public class GAME_MANAGER : MonoBehaviour
     public void RestartGame()
     {
         SceneManager.LoadScene(0);
+    }
+
+    public void ResetarDados()
+    {
+        PlayerPrefs.SetInt("OBSTACULO_LV", 1);
+        PlayerPrefs.SetInt("SLOW_LV", 1);
+        PlayerPrefs.SetInt("TRAP_LV", 1);
+        PlayerPrefs.SetInt("TORRETA_LV", 1);
+
+        PlayerPrefs.SetInt("UNLOCKED_LEVELS", 1);
+
+        PlayerPrefs.SetInt("TOTAL_PARAFUSOS", 0);
+
+        PlayerPrefs.SetInt("TOTAL_MOEDAS", 0);
+
+        CarregarUpgrades();
+        CarregarLevel();
+        CarregarMoedas();
+        CarregarParafusos();
     }
 }

@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: LEVEL_4
   m_EditorClassIdentifier: Assembly-CSharp::LEVEL_SO
   levelCoins: 700
+  desafioCoins: 750
+  levelParafusosRecompensa: 200
   confWaves: {fileID: 11400000, guid: ef7c2b16f3d17d84f86a9a4fc8b4736f, type: 2}

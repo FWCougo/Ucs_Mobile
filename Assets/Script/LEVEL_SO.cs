@@ -4,6 +4,8 @@ using UnityEngine;
 public class LEVEL_SO : ScriptableObject
 {
     public int levelCoins;
+    public int desafioCoins;
+    public int levelParafusosRecompensa;
     public CONF_ENEMY_WAVES confWaves;
 
 }

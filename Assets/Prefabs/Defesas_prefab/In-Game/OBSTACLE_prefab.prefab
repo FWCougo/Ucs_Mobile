@@ -89,7 +89,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_SpriteSortPoint: 0
 --- !u!1 &3029495908212376807
 GameObject:
@@ -160,9 +160,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 849438dead6734e4e92f5c0409d9d663, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MEC_DEF_OBJ
+  mecDef_SO: {fileID: 0}
   mecDef_Serial:
     name: 
     cost: 0
+    costUpgrade: 0
     hp: 0
     placeRadius: 0.5
     sprite: {fileID: 0}
@@ -183,6 +185,7 @@ MonoBehaviour:
     speedModifier: 0
   mainSprite: {fileID: 8641213932292665061}
   mainShadowSprite: {fileID: 7034587045867848514}
+  arrowSprite: {fileID: 912560381733752796}
   lv: 0
   comprado: 0
   podeArrastar: 0
@@ -288,7 +291,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 7316229441688303391, guid: e61d7270afd278440a1e6cebf1bb5cf2, type: 3}
+  m_Sprite: {fileID: 8375903878611967276, guid: d45b5ecd6b09bf64f9434257de1bc670, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -325,7 +328,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3750873985277041079}
@@ -379,7 +382,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 7316229441688303391, guid: e61d7270afd278440a1e6cebf1bb5cf2, type: 3}
+  m_Sprite: {fileID: -8130116401619956050, guid: cad4ad6c90c06984a9a1088991c08e0d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

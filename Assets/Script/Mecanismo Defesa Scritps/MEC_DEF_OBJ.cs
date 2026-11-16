@@ -5,6 +5,7 @@ using UnityEngine.Rendering;
 
 public class MEC_DEF_OBJ : MonoBehaviour, ITouchable, IDragHandler, IEndDragHandler
 {
+    [SerializeField] private MEC_DEF_SO mecDef_SO;
     [SerializeField] private MEC_DEF_SERIALIZED mecDef_Serial;
     public MEC_DEF_SERIALIZED MecDef_Serial
     {
@@ -13,7 +14,8 @@ public class MEC_DEF_OBJ : MonoBehaviour, ITouchable, IDragHandler, IEndDragHand
 
     [SerializeField] private SpriteRenderer mainSprite;
     [SerializeField] private SpriteRenderer mainShadowSprite;
-    [SerializeField] private int lv;
+    [SerializeField] private SpriteRenderer arrowSprite;
+    [SerializeField] public int lv;
 
     Vector3 worldPos;
     Camera cam;
@@ -21,6 +23,8 @@ public class MEC_DEF_OBJ : MonoBehaviour, ITouchable, IDragHandler, IEndDragHand
     [SerializeField] private bool comprado;
 
     [SerializeField] bool podeArrastar;
+
+    [SerializeField] Vector3 posAntiga;
 
     [Header("Offset")]
     private float offsetZ = 1f;
@@ -53,6 +57,7 @@ public class MEC_DEF_OBJ : MonoBehaviour, ITouchable, IDragHandler, IEndDragHand
         AtivaCanva(false);
         posicionado = false;
         comprado = false;
+        arrowSprite.gameObject.SetActive(false);
     }
 
 #if UNITY_EDITOR
@@ -75,10 +80,11 @@ public class MEC_DEF_OBJ : MonoBehaviour, ITouchable, IDragHandler, IEndDragHand
 
     public void ReceberConfiguracoes(MEC_DEF_SO _mecDefSO, int _lv)
     {
+        mecDef_SO = _mecDefSO;
         mecDef_Serial = _mecDefSO.mecDefs[_lv];
         mainSprite.sprite = mecDef_Serial.sprite;
         mainShadowSprite.sprite = mecDef_Serial.sprite;
-        lv = _lv;
+        //lv = _lv;
     }
 
     public void Inicializar(){
@@ -161,6 +167,11 @@ public class MEC_DEF_OBJ : MonoBehaviour, ITouchable, IDragHandler, IEndDragHand
         mainSprite.color =_color;
     }
 
+    public void TrocarLayerIDSprite(int _layer)
+    {
+        mainSprite.sortingOrder = _layer;
+    }
+
     public void Cancelar()
     {
         MEC_DEF_MANAGER.Instance.AtivarPainelDosMecanismos(true);
@@ -169,7 +180,13 @@ public class MEC_DEF_OBJ : MonoBehaviour, ITouchable, IDragHandler, IEndDragHand
 
     public void Posicionar()
     {
+        posAntiga = transform.position;
+
         TrocarCorSprite(Color.white);
+
+        arrowSprite.gameObject.SetActive(false);
+
+        TrocarLayerIDSprite(0);
 
         MEC_DEF_MANAGER.Instance.AtivarPainelDosMecanismos(true);
         
@@ -200,6 +217,13 @@ public class MEC_DEF_OBJ : MonoBehaviour, ITouchable, IDragHandler, IEndDragHand
         Destroy(gameObject);
     }
 
+    public void Upgrade()
+    {
+        lv++;
+        ReceberConfiguracoes(mecDef_SO, lv);
+        Inicializar();
+    }
+
     public void AtivaCanva(bool value)
     {
         mecDef_Canva.AtivaCanva(value);
@@ -209,17 +233,16 @@ public class MEC_DEF_OBJ : MonoBehaviour, ITouchable, IDragHandler, IEndDragHand
     {
         if (!posicionado) return;
 
-        print($"Tocou em {mecDef_Serial.name}");
-
-        //mecDef_Canva.AtivaCanva();
-
         CANVAS_MANAGER.Instance.SelectedPainel_STATE(this);
-
     }
 
     public void AtivarMovimentacao(bool value)
     {
+        posAntiga = transform.position;
+        posicionado = false;
         podeArrastar = value;
+        arrowSprite.gameObject.SetActive(true);
+        TrocarLayerIDSprite(10);
     }
 
     Vector3 GetWorldPoint(Vector3 _pos)
@@ -239,9 +262,6 @@ public class MEC_DEF_OBJ : MonoBehaviour, ITouchable, IDragHandler, IEndDragHand
     public void OnDrag(PointerEventData eventData)
     {
         if (!podeArrastar) return;
-
-       // mecDef_Canva.AtivaCanva(false);
-       // mecDef_Canva.AtivarPainelOpcoes(false);
 
         MOVIMENTAR_CAMERA.canMoveCamera = false;
 
@@ -265,14 +285,28 @@ public class MEC_DEF_OBJ : MonoBehaviour, ITouchable, IDragHandler, IEndDragHand
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        if (VerificaSePodePosicionar())
-        {
-           // mecDef_Canva.AtivaCanva(true);
-           // mecDef_Canva.AtivarPainelPosicionar(true);
+        MOVIMENTAR_CAMERA.canMoveCamera = true;
 
-            CANVAS_MANAGER.Instance.AtivaPainelPosicionar();
-            MOVIMENTAR_CAMERA.canMoveCamera = true;
+        if (VerificaSePodePosicionar())
+        {            
+            CANVAS_MANAGER.Instance.AtivaPainelPosicionar();            
         }
+        else
+        {
+            CancelarMovimento();
+        }
+    }
+
+    public void FinalizarMovimentacao()
+    {
+        Posicionar();
+        GAME_MANAGER.Instance.RemoveCoins(25);
+    }
+
+    public void CancelarMovimento()
+    {
+        transform.position = posAntiga;
+        Posicionar();
     }
 
     public void DeSelect()
