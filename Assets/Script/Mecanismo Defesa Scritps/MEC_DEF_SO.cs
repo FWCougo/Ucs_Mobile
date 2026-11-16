@@ -24,6 +24,7 @@ public class MEC_DEF_SERIALIZED
     public string name;
     [Header("Custo")]
     public int cost;
+    public int costUpgrade;
     [Header("Vida/Redistencia")]
     public float hp;
     [Header("Raio de Posicionamento")]

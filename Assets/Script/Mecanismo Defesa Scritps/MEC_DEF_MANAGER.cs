@@ -1,3 +1,5 @@
+using NUnit.Framework;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class MEC_DEF_MANAGER : MonoBehaviour
@@ -6,6 +8,8 @@ public class MEC_DEF_MANAGER : MonoBehaviour
     [SerializeField] private Transform MecDef_Conteiner;
     [SerializeField] private CanvasGroup mecDefs_canvasGroup;
     [SerializeField] private MEC_DEF_UI mecDefUI;
+
+   // [SerializeField] private List<MEC_DEF_OBJ> mecDefs_Posicionados = new List<MEC_DEF_OBJ>();
 
 
 
@@ -47,4 +51,5 @@ public class MEC_DEF_MANAGER : MonoBehaviour
     {
         return MecDef_Conteiner;
     }
+
 }

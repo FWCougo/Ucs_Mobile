@@ -15,6 +15,7 @@ MonoBehaviour:
   mecDefs:
   - name: Spike Nv. 1
     cost: 80
+    costUpgrade: 0
     hp: -1
     placeRadius: 0.25
     sprite: {fileID: -3783472611645563981, guid: becae2cf60907204d8e470ce9f4ad538, type: 3}
@@ -35,6 +36,7 @@ MonoBehaviour:
     speedModifier: 0
   - name: Spike Nv. 2
     cost: 80
+    costUpgrade: 300
     hp: -1
     placeRadius: 0.25
     sprite: {fileID: 7029106297413862399, guid: bdcd6a11b477d61439f861ac2d8af2d3, type: 3}

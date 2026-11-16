@@ -19,6 +19,7 @@ public class RECEIVE_DMG : MonoBehaviour, IDamageable
             } 
         } 
     }
+    public float MaxHP{ get { return maxHP; } }
 
     public void Inicializar(float _maxHP, Image _lifeImg)
     {

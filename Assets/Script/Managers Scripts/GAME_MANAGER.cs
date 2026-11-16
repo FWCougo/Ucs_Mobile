@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine.AI;
@@ -7,19 +8,25 @@ public class GAME_MANAGER : MonoBehaviour
 {
     public static GAME_MANAGER Instance;
 
+    [SerializeField] private SPAWN_INIMIGO spawnInimigo;
+
     [SerializeField] private bool pause;
+    private CASA casa;
 
     [Header("FASES")]
-    [SerializeField] private int levels = 0;
-    public int Levels
+    [SerializeField] private LEVEL_SO[] levels_SO;
+    [SerializeField] private int selectedLevel = 0;
+    [SerializeField] private int unlockedLevels = 0;
+    public int UnlockedLevels
     {
-        get { return levels; }
+        get { return unlockedLevels; }
         private set
         {
-            levels = value;
+            unlockedLevels = value;
             SalvarLevel();
         }
     }
+    [SerializeField] private int currentLevel = 0;
 
     [Header("MOEDAS")]
     [SerializeField] private int coins = 0;
@@ -30,9 +37,20 @@ public class GAME_MANAGER : MonoBehaviour
         {
             coins = value;
             UpdateCoinTXT();
+            SalvarMoedas();
         }
     }
     [SerializeField] private TMP_Text coins_TXT;
+
+    [SerializeField] private int coinsSpent = 0;
+    public int CoinsSpent
+    {
+        get { return coinsSpent; }
+        private set
+        {
+            coinsSpent = value;
+        }
+    }
 
     [Header("PARAFUSOS")]
     [SerializeField] private int parafusos = 0;
@@ -42,14 +60,56 @@ public class GAME_MANAGER : MonoBehaviour
         private set
         {
             parafusos = value;
+            SalvarParafusos();
         }
     }
 
+
     [Header("UPGRADE LEVELS")]
-    [SerializeField] public int torretaLV = 0;
-    [SerializeField] public int obstaculoLV = 0;
-    [SerializeField] public int trapLV = 0;
-    [SerializeField] public int slowLV = 0;
+    [SerializeField] private int torretaLV = 0;
+    public int TorretaLV
+    {
+        get { return torretaLV; }
+        set
+        {
+            torretaLV = value;
+            SalvarUpgrades();
+        }
+    }
+
+    [SerializeField] private int obstaculoLV = 0;
+    public int ObstaculoLV
+    {
+        get { return obstaculoLV; }
+        set
+        {
+            obstaculoLV = value;
+            SalvarUpgrades();
+        }
+    }
+
+    [SerializeField] private int trapLV = 0;
+    public int TrapLV
+    {
+        get { return trapLV; }
+        set
+        {
+            trapLV = value;
+            SalvarUpgrades();
+        }
+    }
+
+    [SerializeField] private int slowLV = 0;
+    public int SlowLV
+    {
+        get { return slowLV; }
+        set
+        {
+            slowLV = value;
+            SalvarUpgrades();
+        }
+    }
+
 
     [Header("INIMIGOS")]
     [SerializeField] private int inimigosDaWave = 0;
@@ -91,8 +151,11 @@ public class GAME_MANAGER : MonoBehaviour
         else 
             Destroy(gameObject);
 
+
         CarregarUpgrades();
         CarregarLevel();
+        CarregarMoedas();
+        CarregarParafusos();
     }
 
     private void Start()
@@ -114,6 +177,7 @@ public class GAME_MANAGER : MonoBehaviour
     public void RemoveCoins(int _coins)
     {
         Coins -= _coins;
+        coinsSpent+= _coins;
     }
 
     /// <summary>
@@ -131,6 +195,51 @@ public class GAME_MANAGER : MonoBehaviour
         {
             return true;
         }
+    }
+
+    private void SalvarMoedas()
+    {
+        PlayerPrefs.SetInt("TOTAL_MOEDAS", Coins);
+    }
+    private void CarregarMoedas()
+    {
+        Coins = PlayerPrefs.GetInt("TOTAL_MOEDAS");
+    }
+    #endregion
+
+    #region Parafusos
+    public void AddParafuso(int _parafuso)
+    {
+        Parafusos += _parafuso;
+    }
+    public void RemoveParafuso(int _parafuso)
+    {
+        Parafusos -= _parafuso;
+    }
+
+    /// <summary>
+    /// Passe o CUSTO de alguma coisa como parametro. Retorna verdadeiro se pode comprar, ou falso
+    /// </summary>
+    /// <param name="_parafuso"></param>
+    /// <returns></returns>
+    public bool ChecarSeTemParafusos(int _parafuso)
+    {
+        if (_parafuso > Parafusos)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+    private void SalvarParafusos()
+    {
+        PlayerPrefs.SetInt("TOTAL_PARAFUSOS", Parafusos);
+    }
+    private void CarregarParafusos()
+    {
+        Parafusos = PlayerPrefs.GetInt("TOTAL_PARAFUSOS");
     }
     #endregion
 
@@ -165,15 +274,15 @@ public class GAME_MANAGER : MonoBehaviour
     #region Level
     private void SalvarLevel()
     {
-        PlayerPrefs.SetInt("UNLOCKED_LEVELS", Levels);
+        PlayerPrefs.SetInt("UNLOCKED_LEVELS", UnlockedLevels);
     }
     private void CarregarLevel()
     {
-        Levels = PlayerPrefs.GetInt("UNLOCKED_LEVELS");
+        UnlockedLevels = PlayerPrefs.GetInt("UNLOCKED_LEVELS");
 
-        if(Levels == 0)
+        if(UnlockedLevels == 0)
         {
-            Levels = 1;
+            UnlockedLevels = 1;
         }
     }
     #endregion
@@ -234,9 +343,80 @@ public class GAME_MANAGER : MonoBehaviour
     public void WON()
     {
         MENU_MANAGER.Instance.OpenMenu("WON_MENU");
-        Levels++;
-        CANVAS_MANAGER.Instance.ActivateLevelButtons();
-        // MENU_MANAGER.Instance.OpenMenu("LEVELSELECT_MENU");
+
+        casa = FindFirstObjectByType<CASA>();
+
+        int _HpDaCasa = ((int)casa.HP/(int)casa.MaxHP)*100;
+
+        CANVAS_MANAGER.Instance.SetarDinheiroGasto_TXT(coinsSpent);
+        CANVAS_MANAGER.Instance.SetarHPCasa_TXT(_HpDaCasa);
+
+        if (unlockedLevels <= selectedLevel)
+        {
+            UnlockedLevels++;
+            CANVAS_MANAGER.Instance.ActivateLevelButtons();
+            AddParafuso((int)PontuacaoDoNivel());
+        }
+        else
+        {
+            AddParafuso((int)PontuacaoDoNivel() / 2);
+        }
+    }
+
+    private float PontuacaoDoNivel()
+    {
+        float _pontuacaoTotal = 100;
+
+        if(coinsSpent < 500)
+        {
+            _pontuacaoTotal *= 1;
+        }
+        else if(coinsSpent < 1000) 
+        {
+            _pontuacaoTotal *= 0.8f;
+        }
+        else
+        {
+            _pontuacaoTotal *= 0.6f;
+        }
+
+        return _pontuacaoTotal *= ((int)casa.HP / (int)casa.MaxHP);
+
+    }
+
+    public void StartGame(int _lv)
+    {
+        StartCoroutine(LoadGameScene(_lv));
+    }
+
+    private IEnumerator LoadGameScene(int _lv)
+    {
+        if (selectedLevel != 0)
+        {
+            yield return SceneManager.UnloadSceneAsync(selectedLevel);
+        }
+
+        selectedLevel = _lv;
+
+        AsyncOperation operation = SceneManager.LoadSceneAsync(
+            selectedLevel,
+            LoadSceneMode.Additive
+        );
+
+        // Aguarda o carregamento terminar
+        yield return operation;
+
+        Transform _spawnTrans = GameObject.FindGameObjectWithTag("enemy_spawn").GetComponent<Transform>();
+
+        LEVEL_SO _level_SO = levels_SO[_lv - 1];
+
+        Coins = _level_SO.levelCoins;
+
+        spawnInimigo.Trocar_CONF_ENEMY_WAVES(_level_SO.confWaves, _spawnTrans);
+
+        // A cena terminou de carregar
+        coinsSpent = 0;
+        MENU_MANAGER.Instance.OpenMenu("GAME_MENU");
     }
 
     public void Pause()

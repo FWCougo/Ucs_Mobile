@@ -4,6 +4,10 @@ using UnityEngine.UI;
 
 public class CANVAS_MANAGER : MonoBehaviour
 {
+    public static CANVAS_MANAGER Instance;
+
+    private SPAWN_INIMIGO spawn_INIMIGO;
+
     [Header("PAINEL DEFESA SELECIONADA")]
     [SerializeField] private GameObject selected_PAINEL;
     [SerializeField] private GameObject actionSelected_PAINEL;
@@ -15,13 +19,17 @@ public class CANVAS_MANAGER : MonoBehaviour
     [SerializeField] private TMP_Text action_TXT;
     [SerializeField] private TMP_Text selectedOBJ_name_TXT;
     [SerializeField] private TMP_Text selectedOBJ_cost_TXT;
+    [SerializeField] private int custo;
     [SerializeField] private Image selectedOBJ_Image;
-    [SerializeField] private Button selectedObg_confirmAction_BTN;
+    [SerializeField] private Button selectedOBJ_confirmAction_BTN;
 
     [Header("FASES")]
     [SerializeField] private Button[] levelBTNs;
 
-    public static CANVAS_MANAGER Instance;
+    [Header("PAINEL VITORIA")]
+    [SerializeField] private TMP_Text dinheiroGasto_TXT;
+    [SerializeField] private TMP_Text hpDaCasa_TXT;
+
 
     private void Awake()
     {
@@ -32,7 +40,9 @@ public class CANVAS_MANAGER : MonoBehaviour
         else
         {
             Destroy(gameObject);
-        }        
+        }
+
+        spawn_INIMIGO = FindAnyObjectByType<SPAWN_INIMIGO>();
     }
 
     private void Start()
@@ -41,10 +51,21 @@ public class CANVAS_MANAGER : MonoBehaviour
         ActivateLevelButtons();
     }
 
+    #region PainelVitoria
+    public void SetarDinheiroGasto_TXT(int _dinheiroGasto)
+    {
+        dinheiroGasto_TXT.text = $"Money Spent : {_dinheiroGasto}";
+    }
+    public void SetarHPCasa_TXT(int _houseHP)
+    {
+        hpDaCasa_TXT.text = $"House HP : {_houseHP}%";
+    }
+    #endregion
+
     #region LevelBtns
     public void ActivateLevelButtons()
     {
-        int _fasesLiberadas = GAME_MANAGER.Instance.Levels;
+        int _fasesLiberadas = GAME_MANAGER.Instance.UnlockedLevels;
 
         for (int i = 0; i < levelBTNs.Length; i++)
         {            
@@ -53,16 +74,10 @@ public class CANVAS_MANAGER : MonoBehaviour
             else
                 levelBTNs[i].interactable = false;
         }
-
-//        for (int i = 0; i < _fasesLiberadas; i++)
-//        {
-//            levelBTNs[i].interactable = true;
-//        }
-
     }
     #endregion
 
-    #region SelectedPainel
+    #region Painel Selecionado
     public void SelectedPainel_STATE(bool value)
     {
         selectedPAINEL_active = value;
@@ -92,8 +107,6 @@ public class CANVAS_MANAGER : MonoBehaviour
     private void SelectedPainel_ChangeInfo()
     {
         selectedOBJ_Image.sprite = selected_MecDefOBJ.MecDef_Serial.sprite;
-        selectedOBJ_cost = selected_MecDefOBJ.MecDef_Serial.cost;
-        selectedOBJ_cost_TXT.text = "Cost : "+selectedOBJ_cost.ToString();
         selectedOBJ_name_TXT.text = selected_MecDefOBJ.MecDef_Serial.name;
     }
     public void SelectedPainel_ActionPainel()
@@ -103,19 +116,106 @@ public class CANVAS_MANAGER : MonoBehaviour
     }
     public void SelectedPainel_Sell()
     {
-        action_TXT.text = $"Sell?";
+        action_TXT.text = $"Sell?"; 
+        selectedOBJ_cost = selected_MecDefOBJ.MecDef_Serial.cost;
+        selectedOBJ_cost_TXT.text = "You'll get " + selectedOBJ_cost.ToString();
+        selectedOBJ_confirmAction_BTN.onClick.RemoveAllListeners();
+        selectedOBJ_confirmAction_BTN.onClick.AddListener(Vender);
         SelectedPainel_ActionPainel();
     }
     public void SelectedPainel_Move()
     {
         action_TXT.text = $"Move?";
+        selectedOBJ_cost = (int)(selected_MecDefOBJ.MecDef_Serial.cost*0.8f);
+        selectedOBJ_cost_TXT.text = "Cost " + selectedOBJ_cost.ToString();
+        selectedOBJ_confirmAction_BTN.onClick.RemoveAllListeners();
+        selectedOBJ_confirmAction_BTN.onClick.AddListener(AtivarMovimentacao);
         SelectedPainel_ActionPainel();
     }
     public void SelectedPainel_Upgrade()
     {
         action_TXT.text = $"Upgrade?";
+        selectedOBJ_cost = (int)(selected_MecDefOBJ.MecDef_Serial.cost);
+        selectedOBJ_cost_TXT.text = "Cost " + selectedOBJ_cost.ToString();
+        selectedOBJ_confirmAction_BTN.onClick.RemoveAllListeners();
+        selectedOBJ_confirmAction_BTN.onClick.AddListener(Upgrade);
         SelectedPainel_ActionPainel();
     }
 
+    public void Vender()
+    {
+        selected_MecDefOBJ.Vender(selectedOBJ_cost);
+        SelectedPainel_STATE(false);
+    }
+    public void AtivarMovimentacao()
+    {
+        selected_MecDefOBJ.AtivarMovimentacao(true);
+        MEC_DEF_MANAGER.Instance.AtivarPainelDosMecanismos(false);
+        SelectedPainel_STATE(false);
+    }
+    public void Upgrade()
+    {
+
+        SelectedPainel_STATE(false);
+    }
+
+    public void AtivaPainelPosicionar()
+    {
+        SelectedPainel_ActionPainel();
+        selectedOBJ_confirmAction_BTN.onClick.RemoveAllListeners();
+        selectedOBJ_confirmAction_BTN.onClick.AddListener(AtivarMovimentacao);
+    }
+    public void Posicionar()
+    {
+        selected_MecDefOBJ.Posicionar();
+    }
+
+    #endregion
+
+    #region REF MENU_MANAGER
+    public void TrocarMenu(string _sceneName)
+    {
+        MENU_MANAGER.Instance.OpenMenu(_sceneName);
+    }
+    #endregion
+
+    #region REF LOJA MANAGER
+    public void FazerUpgrade()
+    {
+        LOJA_MANAGER.Instance.FazerUpgrade();
+    }
+
+    public void ConfirmarUpgrade()
+    {
+        LOJA_MANAGER.Instance.ConfirmarUpgrade();
+    }
+
+    public void AtivarTelaUpgrade(bool _value)
+    {
+        LOJA_MANAGER.Instance.AtivarTelaUpgrade(_value);
+
+    }
+    #endregion
+
+    #region REF GAME_MANAGER
+    public void StartGame(int _i)
+    {
+        GAME_MANAGER.Instance.StartGame(_i);
+    }
+    public void PauseGame()
+    {
+        GAME_MANAGER.Instance.Pause();
+    }
+    public void RestartGame()
+    {
+        GAME_MANAGER.Instance.RestartGame();
+    }
+    #endregion
+
+    #region SPAWNER
+    public void ComecarRound()
+    {
+        spawn_INIMIGO.ComecarRound();
+    }
     #endregion
 }

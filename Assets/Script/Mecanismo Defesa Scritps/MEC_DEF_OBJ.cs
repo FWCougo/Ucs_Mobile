@@ -240,8 +240,8 @@ public class MEC_DEF_OBJ : MonoBehaviour, ITouchable, IDragHandler, IEndDragHand
     {
         if (!podeArrastar) return;
 
-        mecDef_Canva.AtivaCanva(false);
-        mecDef_Canva.AtivarPainelOpcoes(false);
+       // mecDef_Canva.AtivaCanva(false);
+       // mecDef_Canva.AtivarPainelOpcoes(false);
 
         MOVIMENTAR_CAMERA.canMoveCamera = false;
 
@@ -267,11 +267,11 @@ public class MEC_DEF_OBJ : MonoBehaviour, ITouchable, IDragHandler, IEndDragHand
     {
         if (VerificaSePodePosicionar())
         {
-            mecDef_Canva.AtivaCanva(true);
-            mecDef_Canva.AtivarPainelPosicionar(true);
+           // mecDef_Canva.AtivaCanva(true);
+           // mecDef_Canva.AtivarPainelPosicionar(true);
 
+            CANVAS_MANAGER.Instance.AtivaPainelPosicionar();
             MOVIMENTAR_CAMERA.canMoveCamera = true;
-
         }
     }
 

@@ -36,7 +36,7 @@ public class MEC_DEF_UI : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
 
     void Start()
     {
-        PegarLevel();
+        //PegarLevel();
         UpdateCostUI();
         SetarImagem();
     }
@@ -45,16 +45,16 @@ public class MEC_DEF_UI : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
         switch (mecDef_SO.mecDefs[0].tpDefesa)
         {
             case TipoDefesa.obstaculo:
-                lv = GAME_MANAGER.Instance.obstaculoLV;
+                lv = GAME_MANAGER.Instance.ObstaculoLV;
                 break;
             case TipoDefesa.trapDeVelocidade:
-                lv = GAME_MANAGER.Instance.slowLV;
+                lv = GAME_MANAGER.Instance.SlowLV;
                 break;
             case TipoDefesa.disparoLinear:
-                lv = GAME_MANAGER.Instance.torretaLV;
+                lv = GAME_MANAGER.Instance.TorretaLV;
                 break;
             case TipoDefesa.trapDeDano:
-                lv = GAME_MANAGER.Instance.trapLV;
+                lv = GAME_MANAGER.Instance.TrapLV;
                 break;
         }
     }
@@ -132,7 +132,8 @@ public class MEC_DEF_UI : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
 
         mecDef_OBJ = InstanciarPrefab(worldPos);
 
-        mecDef_OBJ.ReceberConfiguracoes(mecDef_SO,lv-1);
+        //mecDef_OBJ.ReceberConfiguracoes(mecDef_SO,lv-1);
+        mecDef_OBJ.ReceberConfiguracoes(mecDef_SO, 0);
 
         MEC_DEF_MANAGER.Instance.AtivarPainelDosMecanismos(false);
     }
@@ -161,6 +162,7 @@ public class MEC_DEF_UI : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        if (!TemDinheiroSuficiente()) return;
 
         if (VerificaSePodePosicionar())
         {

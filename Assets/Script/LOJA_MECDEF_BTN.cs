@@ -24,16 +24,16 @@ public class LOJA_MECDEF_BTN : MonoBehaviour
         switch (mecDef_SO.mecDefs[0].tpDefesa)
         {
             case TipoDefesa.obstaculo:
-                currentLevel = GAME_MANAGER.Instance.obstaculoLV-1;
+                currentLevel = GAME_MANAGER.Instance.ObstaculoLV-1;
                 break;
             case TipoDefesa.trapDeVelocidade:
-                currentLevel = GAME_MANAGER.Instance.slowLV-1;
+                currentLevel = GAME_MANAGER.Instance.SlowLV-1;
                 break;
             case TipoDefesa.disparoLinear:
-                currentLevel = GAME_MANAGER.Instance.torretaLV-1;
+                currentLevel = GAME_MANAGER.Instance.TorretaLV-1;
                 break;
             case TipoDefesa.trapDeDano:
-                currentLevel = GAME_MANAGER.Instance.trapLV-1;
+                currentLevel = GAME_MANAGER.Instance.TrapLV-1;
                 break;
         }
     }

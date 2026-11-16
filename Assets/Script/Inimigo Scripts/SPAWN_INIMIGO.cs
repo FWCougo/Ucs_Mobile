@@ -5,7 +5,7 @@ using UnityEngine;
 public class SPAWN_INIMIGO : MonoBehaviour
 {
     [Header("WAVES")]
-    [SerializeField] CONF_ENEMY_WAVES confWaves;
+    [SerializeField] private CONF_ENEMY_WAVES confWaves;
     [SerializeField] private int waveAtual;
 
     [Header("TEMPORIZADOR")]
@@ -15,12 +15,19 @@ public class SPAWN_INIMIGO : MonoBehaviour
     [SerializeField] private GameObject waveBTN;
     [SerializeField] private Transform inimigosConteiner;
     [SerializeField] private float spawnRate;
+    [SerializeField] private Transform spawnPos;
 
     [ContextMenu("Começar a Spawnar")]
-    public void ComeçarRound()
+    public void ComecarRound()
     {
         StartCoroutine("SpawnarInimigos");
         waveBTN.SetActive(false);
+    }
+
+    public void Trocar_CONF_ENEMY_WAVES(CONF_ENEMY_WAVES _conf, Transform _transPos)
+    {
+        confWaves = _conf;
+        spawnPos = _transPos;
     }
 
     public void ChangeSpawnRate(float f)
@@ -75,7 +82,7 @@ public class SPAWN_INIMIGO : MonoBehaviour
             for (int i = 0; i < _nInimigos; i++)
             {
                 INIMIGO _inimigo = _enemy_e_qtd_ATUAL.inimigo;
-                _inimigo = Instantiate(_inimigo, transform.position, Quaternion.identity, inimigosConteiner);
+                _inimigo = Instantiate(_inimigo, spawnPos.position, Quaternion.identity, inimigosConteiner);
                 _inimigo.ReceberDestino();
 
                 yield return _wait;

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8f383666d9515a8488c90b3e6a32f7af, type: 3}
-  m_Name: FASE_2
+  m_Name: WAVES_2
   m_EditorClassIdentifier: Assembly-CSharp::CONF_ENEMY_WAVES
   waves:
   - inimigo_e_quantidade:
