@@ -15,7 +15,7 @@ public class VARIABLES_TEXT : MonoBehaviour
 
     private void OnEnable()
     {
-        SetarTexto();
+        Invoke("SetarTexto",0.01f);
     }
 
     private void SetarTexto()

@@ -284,6 +284,8 @@ public class GAME_MANAGER : MonoBehaviour
         {
             UnlockedLevels = 1;
         }
+
+        CANVAS_MANAGER.Instance.ActivateLevelButtons();
     }
     #endregion
 

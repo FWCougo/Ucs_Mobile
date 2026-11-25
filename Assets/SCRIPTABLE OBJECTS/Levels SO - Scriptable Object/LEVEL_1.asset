@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f724c80fd2886fa4cb7766e2a07877df, type: 3}
   m_Name: LEVEL_1
   m_EditorClassIdentifier: Assembly-CSharp::LEVEL_SO
-  levelCoins: 500
+  levelCoins: 600
   desafioCoins: 750
   levelParafusosRecompensa: 200
   confWaves: {fileID: 11400000, guid: c52e896c7308f3742ae9b3247caf06e5, type: 2}

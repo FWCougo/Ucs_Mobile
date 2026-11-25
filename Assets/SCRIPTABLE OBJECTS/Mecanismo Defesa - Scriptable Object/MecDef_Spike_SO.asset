@@ -13,9 +13,30 @@ MonoBehaviour:
   m_Name: MecDef_Spike_SO
   m_EditorClassIdentifier: Assembly-CSharp::MEC_DEF_SO
   mecDefs:
-  - name: Spike Nv. 1
+  - name: Trap Nv. 1
     cost: 80
     costUpgrade: 0
+    hp: -1
+    placeRadius: 0.25
+    sprite: {fileID: 6992399516404191815, guid: 1d205de1f6070b148b2105af4e250d20, type: 3}
+    prefab: {fileID: 5327859114143437811, guid: f369d77943a8a5f4b8b938cfb6d878b2, type: 3}
+    obstacleLayer:
+      serializedVersion: 2
+      m_Bits: 192
+    enemyLayer:
+      serializedVersion: 2
+      m_Bits: 8
+    tpDefesa: 8
+    dmg: 0.3
+    dmgRate: 0.3
+    dmgRadius: 0.2
+    shootRate: 0
+    shootRadius: 0
+    rotationSpeed: 0
+    speedModifier: 0.25
+  - name: Trap Nv. 2
+    cost: 80
+    costUpgrade: 300
     hp: -1
     placeRadius: 0.25
     sprite: {fileID: -3783472611645563981, guid: becae2cf60907204d8e470ce9f4ad538, type: 3}
@@ -34,7 +55,7 @@ MonoBehaviour:
     shootRadius: 0
     rotationSpeed: 0
     speedModifier: 0
-  - name: Spike Nv. 2
+  - name: Trap Nv. 3
     cost: 80
     costUpgrade: 300
     hp: -1
