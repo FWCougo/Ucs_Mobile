@@ -79,9 +79,9 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 7316229441688303391, guid: e61d7270afd278440a1e6cebf1bb5cf2, type: 3}
+  m_Sprite: {fileID: 8375903878611967276, guid: d45b5ecd6b09bf64f9434257de1bc670, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 0.25882354}
   m_FlipX: 0
   m_FlipY: 0
@@ -89,7 +89,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
 --- !u!1 &3029495908212376807
 GameObject:
@@ -189,6 +189,7 @@ MonoBehaviour:
   lv: 0
   comprado: 0
   podeArrastar: 0
+  posAntiga: {x: 0, y: 0, z: 0}
   mecDef_Canva: {fileID: 7249489558867736597}
   areaDeEfeito_GO: {fileID: 0}
   placeRadius: 0
@@ -235,13 +236,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3177569306247275860}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.6427876, y: -0, z: -0, w: 0.7660445}
-  m_LocalPosition: {x: 0, y: 0.092, z: 0}
+  m_LocalRotation: {x: 0.5735764, y: 0, z: 0, w: 0.8191521}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.61, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3750873985277041079}
-  m_LocalEulerAnglesHint: {x: 80, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 70, y: 0, z: 0}
 --- !u!212 &8641213932292665061
 SpriteRenderer:
   serializedVersion: 2

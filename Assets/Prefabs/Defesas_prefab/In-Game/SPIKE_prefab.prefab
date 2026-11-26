@@ -190,6 +190,7 @@ MonoBehaviour:
   lv: 0
   comprado: 0
   podeArrastar: 0
+  posAntiga: {x: 0, y: 0, z: 0}
   mecDef_Canva: {fileID: 3065397293635015298}
   areaDeEfeito_GO: {fileID: 0}
   placeRadius: 0.25
@@ -311,13 +312,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7640158154414062163}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.6427876, y: 0, z: 0, w: 0.7660445}
+  m_LocalRotation: {x: 0.5735764, y: 0, z: 0, w: 0.8191521}
   m_LocalPosition: {x: 0, y: 0.006, z: -0.19}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8982736973221234616}
-  m_LocalEulerAnglesHint: {x: 80, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 70, y: 0, z: 0}
 --- !u!212 &7875142118815148560
 SpriteRenderer:
   serializedVersion: 2
