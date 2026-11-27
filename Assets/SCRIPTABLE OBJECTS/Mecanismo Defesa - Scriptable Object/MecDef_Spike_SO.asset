@@ -70,8 +70,8 @@ MonoBehaviour:
       m_Bits: 8
     tpDefesa: 4
     dmg: 0.3
-    dmgRate: 0.3
-    dmgRadius: 0.2
+    dmgRate: 0.15
+    dmgRadius: 0.3
     shootRate: 0
     shootRadius: 0
     rotationSpeed: 0

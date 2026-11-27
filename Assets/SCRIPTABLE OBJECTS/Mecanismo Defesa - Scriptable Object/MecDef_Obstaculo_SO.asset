@@ -37,7 +37,7 @@ MonoBehaviour:
   - name: Obstaculo Nv. 2
     cost: 45
     costUpgrade: 200
-    hp: 20
+    hp: 40
     placeRadius: 0.35
     sprite: {fileID: 8375903878611967276, guid: d45b5ecd6b09bf64f9434257de1bc670, type: 3}
     prefab: {fileID: 3029495908212376807, guid: e0b896906c4015b439a8fc968af5fd89, type: 3}

@@ -15,6 +15,7 @@ MonoBehaviour:
   mecDefs:
   - name: Tourete Lv.1
     cost: 100
+    costUpgrade: 0
     hp: 10
     placeRadius: 0.35
     sprite: {fileID: -747428842153570842, guid: f1c95be07f50f5544b0a874c6d3a8351, type: 3}
@@ -32,4 +33,25 @@ MonoBehaviour:
     shootRate: 0.5
     shootRadius: 2
     rotationSpeed: 180
+    speedModifier: 0.25
+  - name: Tourete Lv.1
+    cost: 100
+    costUpgrade: 400
+    hp: 10
+    placeRadius: 0.25
+    sprite: {fileID: -661390242415217744, guid: 091f56313e5db4a41827050e51e0d9a9, type: 3}
+    prefab: {fileID: 4221427147387899857, guid: 98ac23823dc8ebe4da12872bb89304e3, type: 3}
+    obstacleLayer:
+      serializedVersion: 2
+      m_Bits: 192
+    enemyLayer:
+      serializedVersion: 2
+      m_Bits: 8
+    tpDefesa: 1
+    dmg: 0.4
+    dmgRate: 0.5
+    dmgRadius: 0
+    shootRate: 0.25
+    shootRadius: 3
+    rotationSpeed: 190
     speedModifier: 0.25
